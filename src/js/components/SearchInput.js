@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import SearchInputIcon from './SearchInputIcon';
+
 const SearchInput = (props) => {
   const { value, inputChangeHandler, disabled, placeholder } = props;
   return (
@@ -16,6 +18,9 @@ const SearchInput = (props) => {
         maxLength='6'
         inputMode='numeric'
       />
+      <button className={'c19-search-input-icon'}>
+        <SearchInputIcon />
+      </button>
     </div>
   );
 };

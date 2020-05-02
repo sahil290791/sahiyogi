@@ -16,7 +16,7 @@ class Home extends Component {
               <InfoCard cardType='info'>
                 <p>Welcome</p>
               </InfoCard>
-              <SearchInput title="React App" />
+              <SearchInput placeholder="Enter your Pincode" />
             </div>
           </div>
         </div>
