@@ -5,9 +5,81 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #f1f3f5;
+  color: #111;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+p {
+  margin-top: 12px;
+  margin-bottom: 12px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.c19-header {
+  text-align: center;
+  font-size: calc(10px + 2vmin);
+}
+
+.c-19-main-wrapper {
+  max-width: 740px;
+}
+/* Search Input */
+
+.c19-search-input-container {
+  background: #fff;
+  box-shadow: 0 6px 8px rgba(102,119,136,.03), 0 1px 2px rgba(102,119,136,.3);
+  display: flex;
+  height: 64px;
+  align-items: center;
+  cursor: text;
+  width: 100%;
+}
+
+.c19-search-input-container .c19-search-input {
+  font-size: 17px;
+  padding: 16px;
+  height: 64px;
+  border: 0;
+  width: 100%;
+  font-weight: 700;
+  color: #111;
+  min-width: 48px;
+}
+
+
+.c19-search-input-container .c19-search-input:hover {
+  outline: none;
+}
+
+.c19-search-input-container .c19-search-input:focus {
+  outline: none;
+}
+
+.c19-search-input-container .c19-search-input:active {
+  outline: none;
+}
+
+/* Info Card */
+
+.c19-info-card {
+  width: 100%;
+  padding: 20px;
+  display: block;
+  color: #fff;
+  text-align: left;
+  border-radius: 4px;
+  margin: 15px 0;
+}
+
+.c19-info-card.info {
+  background: #745fb5;
+  background: linear-gradient(15deg,#678,#6f8793);
+  box-shadow: 0 1px 1px rgba(102,119,136,.55);
+  text-shadow: 0 1px 1px rgba(51,68,85,.3);
 }
