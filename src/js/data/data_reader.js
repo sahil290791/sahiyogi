@@ -2,11 +2,9 @@ import csv from 'csv-parser';
 import fs from 'fs';
 import path from 'path';
 
-import { models } from '../models';
-
-const readCSV = () => {
+const readCSV = async () => {
   const results = [];
-  fs.createReadStream(path.resolve(__dirname, '..', '..', 'data', 'covid_activities.csv'))
+  await fs.createReadStream(path.resolve(__dirname, '..', '..', 'data', 'covid_activities.csv'))
     .pipe(csv())
     .on('data', (data) => {
       console.log(data);

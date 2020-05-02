@@ -29,10 +29,12 @@
   "homepage": "https://github.com/sahil290791/sahiyogi#readme",
   "dependencies": {
     "@babel/node": "^7.8.7",
+    "axios": "^0.19.2",
     "csv-parser": "^2.3.2",
     "eslint-config-airbnb": "^18.1.0",
     "express": "^4.17.1",
     "fs": "^0.0.1-security",
+    "lodash": "^4.17.15",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

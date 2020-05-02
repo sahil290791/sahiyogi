@@ -10,6 +10,9 @@ const StatusCard = (props) => {
     green: 'green',
   };
 
+  if (!city) {
+    return null;
+  }
   return (
     <div className={`text-center c19-status-banner ${cardTheme[status]}`}>
       <p>
