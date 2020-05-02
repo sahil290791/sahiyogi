@@ -1,10 +1,19 @@
 $search-input-bg: #fff;
 $search-input-color: #111;
+$search-input-placeholder-color: #747474;
 $search-input-border-radius: 0;
 $search-input-font-size: 18px;
 $search-input-space: 16px;
 
-/* Search Input */
+/* input placeholder */
+input {
+  &::placeholder {
+    color: $search-input-placeholder-color;
+    opacity: 1;
+  }
+}
+
+/* search input */
 
 .c19-search-input-container {
   background: $search-input-bg;
