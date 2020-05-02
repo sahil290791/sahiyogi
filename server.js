@@ -3,6 +3,7 @@ const path = require('path');
 
 const app = express();
 
+app.set('trust proxy', true);
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'dist')));
 
