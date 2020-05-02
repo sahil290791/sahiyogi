@@ -17,6 +17,11 @@ class Home extends Component {
                 <p>Welcome</p>
               </InfoCard>
               <SearchInput placeholder="Enter your Pincode" />
+              <div className="mt-3 text-center">
+                <a href="#" className='text-link'>
+                  Use Location
+                </a>
+              </div>
             </div>
           </div>
         </div>
