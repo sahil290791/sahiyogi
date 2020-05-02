@@ -29,6 +29,16 @@
     -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+      $(document).ready(function(){
+        $(".c19-category-search-input").on("keyup", function() {
+          var value = $(this).val().toLowerCase();
+          $(".accordion-category-header").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+          });
+        });
+      });
+    </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjt7-Mdz_jiSsXUT4-Teffc9fS3SrmVDA"></script>
   </body>
 </html>
