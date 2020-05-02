@@ -5,6 +5,7 @@ import CategoryTitle from '../components/CategoryTitle';
 import SearchInput from '../components/SearchInput';
 import GoogleMaps from '../components/GoogleMaps';
 import InfoBanner from '../components/InfoBanner';
+import StatusCard from '../components/StatusCard';
 import StatusTile from '../components/StatusTile';
 
 
@@ -46,6 +47,7 @@ class Home extends Component {
                   Use device location
                 </a>
               </div>
+              <StatusCard city='Bangalore' status='red' />
               <GoogleMaps
                 searchQuery={searchQuery}
               />

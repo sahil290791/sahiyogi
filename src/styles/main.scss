@@ -79,6 +79,15 @@ a {
 
 /* Info Card */
 
+.c19-status-banner {
+  padding: 1px;
+
+  p {
+    margin: 0;
+  }
+}
+
+.c19-status-banner,
 .c19-info-card {
   width: 100%;
   padding: 10px;
@@ -95,10 +104,17 @@ a {
     background: linear-gradient(15deg, #678, #6f8793);
   }
 
+  &.green,
   &.success {
     background: linear-gradient(15deg,#14af83,#15b89a);
   }
 
+  &.red,
+  &.error {
+    background: linear-gradient(15deg, #ec3c3c, #e62f2f);
+  }
+
+  &.containment,
   &.error {
     background: linear-gradient(15deg, #ec3c3c, #e62f2f);
   }
