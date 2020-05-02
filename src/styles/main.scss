@@ -1,4 +1,5 @@
 @import 'input';
+@import 'status-tile';
 
 body {
   margin: 0;
@@ -75,7 +76,7 @@ a {
 
 .c19-info-card {
   width: 100%;
-  padding: 20px;
+  padding: 10px;
   display: block;
   color: #fff;
   text-align: left;
