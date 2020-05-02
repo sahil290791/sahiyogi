@@ -23,5 +23,9 @@
         "react"
     ],
     "rules": {
+      "react/jsx-filename-extension": "off",
+      "comma-dangle": "off",
+      "jsx-quotes": "off",
+      "jsx-a11y/anchor-is-valid": "off"
     }
 }
