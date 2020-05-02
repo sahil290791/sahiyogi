@@ -52,10 +52,21 @@ class Home extends Component {
           </div>
           <div className='row no-gutters status-card-container'>
             <div className='col-12'>
-              <div className='card-group'>
-                <StatusTile status='notallowed' title="Health Care" description="Hello World" />
-                <StatusTile status='allowed' title="Health Care" description="Helloafkafjalfkja lkfaj lajflka World" />
-                <StatusTile status='allowed' title="Health Care" description="Helloafkafjalfkja lkfaj lajflka World" />
+              <div className='c19-status-section'>
+                <h3 className='allowed'>Allowed</h3>
+                <div className='card-group'>
+                  <StatusTile status='allowed' title="Health Care" description="Hello World" />
+                  <StatusTile status='allowed' title="Health Care" description="Helloafkafjalfkja lkfaj lajflka World" />
+                  <StatusTile status='allowed' title="Health Care" description="Helloafkafjalfkja lkfaj lajflka World" />
+                </div>
+              </div>
+              <div className='c19-status-section'>
+                <h3 className='restricted'>Restricted</h3>
+                <div className='card-group'>
+                  <StatusTile status='notallowed' title="Health Care" description="Hello World" />
+                  <StatusTile status='notallowed' title="Health Care" description="Helloafkafjalfkja lkfaj lajflka World" />
+                  <StatusTile status='notallowed' title="Health Care" description="Helloafkafjalfkja lkfaj lajflka World" />
+                </div>
               </div>
             </div>
           </div>
