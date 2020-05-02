@@ -7,6 +7,7 @@ import GoogleMaps from '../components/GoogleMaps';
 // import InfoBanner from '../components/InfoBanner';
 import StatusCard from '../components/StatusCard';
 import StatusTile from '../components/StatusTile';
+import AccordionToggleIcon from '../components/AccordionToggleIcon';
 
 class Home extends Component {
   constructor(props) {
@@ -59,7 +60,10 @@ class Home extends Component {
                 <div className="card">
                   <div className="card-header" id="headingOne">
                     <div className="accordion-title-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                      Health Care
+                      <span>Health Care</span>
+                      <div className='arrow-down'>
+                        <AccordionToggleIcon />
+                      </div>
                     </div>
                   </div>
                   <div id="collapseOne" className="collapse show" aria-labelledby="headingOne" data-parent="#category-accordion">
@@ -86,7 +90,10 @@ class Home extends Component {
                 <div className="card">
                   <div className="card-header" id="headingTwo">
                     <div className="accordion-title-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                      Education
+                      <span>Education</span>
+                      <div className='arrow-down'>
+                        <AccordionToggleIcon />
+                      </div>
                     </div>
                   </div>
                   <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo" data-parent="#category-accordion">
