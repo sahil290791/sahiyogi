@@ -4,10 +4,9 @@ import Header from '../components/Header';
 import CategoryStatusTitle from '../components/CategoryStatusTitle';
 import SearchInput from '../components/SearchInput';
 import GoogleMaps from '../components/GoogleMaps';
-import InfoBanner from '../components/InfoBanner';
+// import InfoBanner from '../components/InfoBanner';
 import StatusCard from '../components/StatusCard';
 import StatusTile from '../components/StatusTile';
-
 
 class Home extends Component {
   constructor(props) {
@@ -30,10 +29,7 @@ class Home extends Component {
         <div className="container c-19-main-wrapper">
           <div className="row">
             <div className="col s12">
-              <Header title="React App" />
-              <InfoBanner cardType='info'>
-                <p>Welcome</p>
-              </InfoBanner>
+              <Header title="React App" description='Usefull application' />
               <SearchInput
                 placeholder="Enter your Pincode"
                 inputChangeHandler={this.updateSearchQuery}
@@ -47,6 +43,10 @@ class Home extends Component {
                   Use device location
                 </a>
               </div>
+            </div>
+          </div>
+          <div className='row'>
+            <div className='col s12'>
               <StatusCard city='Bangalore' status='red' />
               <GoogleMaps
                 searchQuery={searchQuery}
