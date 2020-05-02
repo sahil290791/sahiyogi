@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 import SearchInputIcon from './SearchInputIcon';
 
 const SearchInput = (props) => {
-  const { value, inputChangeHandler, disabled, placeholder } = props;
+  const {
+    value, inputChangeHandler, disabled, placeholder
+  } = props;
   return (
     <div className='c19-search-input-container'>
       <input
@@ -25,8 +27,18 @@ const SearchInput = (props) => {
   );
 };
 
+SearchInput.defaultProps = {
+  value: null,
+  disabled: false,
+  placeholder: ''
+};
+
 SearchInput.propTypes = {
-  title: PropTypes.string.isRequired,
+  inputChangeHandler: PropTypes.func.isRequired,
+  value: PropTypes.string,
+  disabled: PropTypes.bool,
+  placeholder: PropTypes.string,
+  // title: PropTypes.string.isRequired,
 };
 
 export default SearchInput;
