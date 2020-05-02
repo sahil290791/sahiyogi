@@ -1,5 +1,6 @@
 @import 'input';
 @import 'status-tile';
+@import 'category-title';
 
 body {
   margin: 0;
@@ -68,33 +69,6 @@ a {
 
     &:hover, &:focus, &:active {
       outline: none;
-    }
-  }
-}
-
-h3 {
-  margin-top: 12px;
-  margin-bottom: 8px;
-  white-space: nowrap;
-  overflow: hidden;
-  font-size: 24px;
-
-  &::after {
-    margin-left: 24px;
-    content: '';
-    display: inline-block;
-    vertical-align: middle;
-    width: 100%;
-    height: 1px;
-  }
-  &.allowed {
-    &::after {
-      background: linear-gradient(to right, #14af83, transparent 80%);
-    }
-  }
-  &.restricted {
-    &::after {
-      background: linear-gradient(to right, #ec3c3c, transparent 80%);
     }
   }
 }

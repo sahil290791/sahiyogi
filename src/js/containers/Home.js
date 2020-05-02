@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Header from '../components/Header';
+import CategoryTitle from '../components/CategoryTitle';
 import SearchInput from '../components/SearchInput';
 import GoogleMaps from '../components/GoogleMaps';
 import InfoBanner from '../components/InfoBanner';
@@ -53,7 +54,7 @@ class Home extends Component {
           <div className='row no-gutters status-card-container'>
             <div className='col-12'>
               <div className='c19-status-section'>
-                <h3 className='allowed'>Allowed</h3>
+                <CategoryTitle status='allowed' title='Allowed' />
                 <div className='card-group'>
                   <StatusTile status='allowed' title="Health Care" description="Hello World" />
                   <StatusTile status='allowed' title="Health Care" description="Helloafkafjalfkja lkfaj lajflka World" />
@@ -61,7 +62,7 @@ class Home extends Component {
                 </div>
               </div>
               <div className='c19-status-section'>
-                <h3 className='restricted'>Restricted</h3>
+                <CategoryTitle status='restricted' title='Restricted' />
                 <div className='card-group'>
                   <StatusTile status='notallowed' title="Health Care" description="Hello World" />
                   <StatusTile status='notallowed' title="Health Care" description="Helloafkafjalfkja lkfaj lajflka World" />

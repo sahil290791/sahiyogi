@@ -8,7 +8,7 @@ function AllowIcon() {
       version="1.1"
       viewBox="0 0 15 15"
       xmlSpace="preserve"
-      fill="#76dab2"
+      fill="#14af83"
       width={20}
       height={20}
     >

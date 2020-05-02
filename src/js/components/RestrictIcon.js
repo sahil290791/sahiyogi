@@ -8,7 +8,7 @@ function RestrictIcon() {
       version="1.1"
       viewBox="0 0 15 15"
       xmlSpace="preserve"
-      fill="#da7676"
+      fill="#ec3c3c"
       width={20}
       height={20}
     >
