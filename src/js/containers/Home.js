@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import Header from '../components/Header';
-import CategoryTitle from '../components/CategoryTitle';
+import CategoryStatusTitle from '../components/CategoryStatusTitle';
 import SearchInput from '../components/SearchInput';
 import GoogleMaps from '../components/GoogleMaps';
 import InfoBanner from '../components/InfoBanner';
@@ -55,20 +55,60 @@ class Home extends Component {
           </div>
           <div className='row no-gutters status-card-container'>
             <div className='col-12'>
-              <div className='c19-status-section'>
-                <CategoryTitle status='allowed' title='Allowed' />
-                <div className='card-group'>
-                  <StatusTile status='allowed' title="Health Care" description="Hello World" />
-                  <StatusTile status='allowed' title="Health Care" description="Helloafkafjalfkja lkfaj lajflka World" />
-                  <StatusTile status='allowed' title="Health Care" description="Helloafkafjalfkja lkfaj lajflka World" />
+              <div className="accordion" id="category-accordion">
+                <div className="card">
+                  <div className="card-header" id="headingOne">
+                    <div className="accordion-title-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      Health Care
+                    </div>
+                  </div>
+                  <div id="collapseOne" className="collapse show" aria-labelledby="headingOne" data-parent="#category-accordion">
+                    <div className="card-body">
+                      <div className='c19-status-section'>
+                        <CategoryStatusTitle status='allowed' title='Allowed' />
+                        <div className='card-group'>
+                          <StatusTile status='allowed' title="Health Care" description="Hello World" />
+                          <StatusTile status='allowed' title="Health Care" description="Helloafkafjalfkja lkfaj lajflka World" />
+                          <StatusTile status='allowed' title="Health Care" description="Helloafkafjalfkja lkfaj lajflka World" />
+                        </div>
+                      </div>
+                      <div className='c19-status-section'>
+                        <CategoryStatusTitle status='restricted' title='Restricted' />
+                        <div className='card-group'>
+                          <StatusTile status='notallowed' title="Health Care" description="Hello World" />
+                          <StatusTile status='notallowed' title="Health Care" description="Helloafkafjalfkja lkfaj lajflka World" />
+                          <StatusTile status='notallowed' title="Health Care" description="Helloafkafjalfkja lkfaj lajflka World" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div className='c19-status-section'>
-                <CategoryTitle status='restricted' title='Restricted' />
-                <div className='card-group'>
-                  <StatusTile status='notallowed' title="Health Care" description="Hello World" />
-                  <StatusTile status='notallowed' title="Health Care" description="Helloafkafjalfkja lkfaj lajflka World" />
-                  <StatusTile status='notallowed' title="Health Care" description="Helloafkafjalfkja lkfaj lajflka World" />
+                <div className="card">
+                  <div className="card-header" id="headingTwo">
+                    <div className="accordion-title-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      Education
+                    </div>
+                  </div>
+                  <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo" data-parent="#category-accordion">
+                    <div className="card-body">
+                      <div className='c19-status-section'>
+                        <CategoryStatusTitle status='allowed' title='Allowed' />
+                        <div className='card-group'>
+                          <StatusTile status='allowed' title="Health Care" description="Hello World" />
+                          <StatusTile status='allowed' title="Health Care" description="Helloafkafjalfkja lkfaj lajflka World" />
+                          <StatusTile status='allowed' title="Health Care" description="Helloafkafjalfkja lkfaj lajflka World" />
+                        </div>
+                      </div>
+                      <div className='c19-status-section'>
+                        <CategoryStatusTitle status='restricted' title='Restricted' />
+                        <div className='card-group'>
+                          <StatusTile status='notallowed' title="Health Care" description="Hello World" />
+                          <StatusTile status='notallowed' title="Health Care" description="Helloafkafjalfkja lkfaj lajflka World" />
+                          <StatusTile status='notallowed' title="Health Care" description="Helloafkafjalfkja lkfaj lajflka World" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

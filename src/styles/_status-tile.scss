@@ -4,11 +4,27 @@ $status-card-font-color: #111;
 
 
 .status-card-container {
+  margin-top: 10px;
+
   .card-group>.card:first-child {
     margin-left: 0;
   }
   .card-group>.card:last-child {
     margin-right: 0
+  }
+
+  .accordion>.card>.card-header {
+    padding: 0;
+
+    .accordion-title-link {
+      padding: 12px;
+      color: #111;
+      font-weight: 600;
+    }
+  }
+
+  .card-body {
+    padding: $status-card-space;
   }
 }
 

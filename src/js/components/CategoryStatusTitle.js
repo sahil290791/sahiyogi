@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import AllowIcon from './AllowIcon';
 import RestrictIcon from './RestrictIcon';
 
-const Header = (props) => {
+const CategoryStatusTitle = (props) => {
   const { title, status } = props;
   const statusIcon = status === 'allowed' ? <AllowIcon /> : <RestrictIcon />;
   const statusClass = status === 'allowed' ? 'allowed' : 'restricted';
@@ -23,9 +23,9 @@ const Header = (props) => {
   );
 };
 
-Header.propTypes = {
+CategoryStatusTitle.propTypes = {
   title: PropTypes.string.isRequired,
   status: PropTypes.string.isRequired,
 };
 
-export default Header;
+export default CategoryStatusTitle;
