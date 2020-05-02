@@ -111,10 +111,17 @@ a {
 
   &.red,
   &.error {
-    background: linear-gradient(15deg, #ec3c3c, #e62f2f);
+    background: linear-gradient(15deg,#14af83,#15b89a);
   }
 
-  &.containment,
+  &.containment {
+    background: linear-gradient(15deg, #ec0b0b, #e60000);
+  }
+
+  &.orange {
+    background: linear-gradient(15deg, #f59142, #fb760d);
+  }
+
   &.error {
     background: linear-gradient(15deg, #ec3c3c, #e62f2f);
   }

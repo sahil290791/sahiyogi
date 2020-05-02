@@ -6,7 +6,7 @@ const StatusCard = (props) => {
   const cardTheme = {
     containment: 'containment',
     red: 'red',
-    orange: 'oranger',
+    orange: 'orange',
     green: 'green',
   };
 
