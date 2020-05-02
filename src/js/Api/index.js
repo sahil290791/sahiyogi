@@ -1,11 +1,27 @@
 import { makeGetRequest } from './api';
 
-const getDataFromPincode = (pincode) => {
+const GOOGLE_API_KEY = 'AIzaSyCjt7-Mdz_jiSsXUT4-Teffc9fS3SrmVDA';
+const FOURSQUARE_CLIENT_SECRET = 'HRDKFPHCHB3VXRKAKZEI0UJBDTKTGPJKJ1VKG3VR11MSI2OI';
+const FOURSQUARE_CLIENT_ID = 'G32Z1SB20LPG1UJRLBQV1PKXKTAQV0WIJS50A2F3BD4CKVHN';
+
+const getDataFromPincode = (pincode, options) => {
   makeGetRequest({
-    url: `https://someurl?query=${pincode}`
+    url: `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${pincode}&inputtype=textquery&fields=place_id,geometry&key=${GOOGLE_API_KEY}`,
+    ...options,
+  });
+};
+const getDataFromLatLang = (lat, lang, options) => {
+  makeGetRequest({
+    url: `https://api.foursquare.com/v2/venues/search?ll=${lat},${lang}&client_secret=${FOURSQUARE_CLIENT_SECRET}&client_id=${FOURSQUARE_CLIENT_ID}&v=20160623`,
+    ...options,
   });
 };
 
 export {
-  getDataFromPincode
+  getDataFromPincode,
+  getDataFromLatLang,
 };
+
+// https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=711202&inputtype=textquery&fields=formatted_address,id,name,opening_hours,geometry&key=AIzaSyCjt7-Mdz_jiSsXUT4-Teffc9fS3SrmVDA
+// https://maps.googleapis.com/maps/api/place/details/json?place_id=8564fbd0fb148808b9bc82bc788c7c2eb4077fe4&fields=name,rating,formatted_phone_number&key=AIzaSyCjt7-Mdz_jiSsXUT4-Teffc9fS3SrmVDA
+// https://api.foursquare.com/v2/venues/search?ll=22.6322886,88.35064679999999&client_secret=HRDKFPHCHB3VXRKAKZEI0UJBDTKTGPJKJ1VKG3VR11MSI2OI&client_id=G32Z1SB20LPG1UJRLBQV1PKXKTAQV0WIJS50A2F3BD4CKVHN&v=20160623

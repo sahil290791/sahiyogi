@@ -8,6 +8,9 @@ const makeRequest = (options) => {
       options.cb(data);
     },
     error: (data) => {
+      if (options.onError) {
+        options.onError();
+      }
       if (process.env.NODE_ENV === 'development') {
         console.log('error', data);
       }

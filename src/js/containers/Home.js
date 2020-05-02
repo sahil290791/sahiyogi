@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import Header from '../components/Header';
 import CategoryStatusTitle from '../components/CategoryStatusTitle';
 import SearchInput from '../components/SearchInput';
@@ -8,23 +7,85 @@ import GoogleMaps from '../components/GoogleMaps';
 import StatusCard from '../components/StatusCard';
 import StatusTile from '../components/StatusTile';
 import AccordionToggleIcon from '../components/AccordionToggleIcon';
+import { getDataFromPincode, getDataFromLatLang } from '../api/index';
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
       searchQuery: null,
+      isQuerying: false,
+      location: null,
+      city: null,
+      error: null
     };
   }
 
+
   updateSearchQuery = (event) => {
+    const searchText = event.target.value || '';
     this.setState({
-      searchQuery: event.target.value,
+      searchQuery: searchText,
+      error: null,
+    });
+    if (searchText.length === 6) {
+      this.initiateSearch(searchText);
+    }
+  }
+
+  initiateSearch(searchText) {
+    this.setState({ isQuerying: true });
+    getDataFromPincode(searchText, {
+      cb: (data) => {
+        const { location } = data.candidates[0].geometry;
+        this.setState({
+          location,
+        });
+        this.initiateCitySearch(location);
+      },
+      onError: () => {
+        this.setState({
+          isQuerying: false,
+          location: null,
+          error: 'Location not found'
+        });
+      }
+    });
+  }
+
+  initiateCitySearch(location) {
+    this.setState({ isQuerying: true });
+    getDataFromLatLang(location.lat, location.lng, {
+      cb: (data) => {
+        const { venues } = data.response;
+        // City might not be present first element
+        const venue = venues.find((v) => v.location.city);
+        if (venue) {
+          const { city } = venue.location;
+          this.setState({
+            isQuerying: false,
+            city,
+          });
+        } else {
+          this.setState({
+            isQuerying: false,
+            city: null,
+            error: 'Location not found'
+          });
+        }
+      },
+      onError: () => {
+        this.setState({
+          isQuerying: false,
+          city: null,
+          error: 'Location not found'
+        });
+      }
     });
   }
 
   render() {
-    const { searchQuery } = this.state;
+    const { searchQuery, isQuerying } = this.state;
     return (
       <div className="App">
         <div className="container c-19-main-wrapper">
@@ -35,6 +96,7 @@ class Home extends Component {
                 placeholder="Enter your Pincode"
                 inputChangeHandler={this.updateSearchQuery}
                 value={searchQuery}
+                isLoading={isQuerying}
               />
               <p className="text-center c19-info-text">
                 or
