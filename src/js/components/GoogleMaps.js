@@ -13,13 +13,19 @@ class GoogleMaps extends Component {
     this.map = null;
     this.state = {
       // isWaiting: true,
-      searchQuery: {},
+      searchQuery: null,
       location: {},
     };
   }
 
   componentDidMount() {
     this.initMap();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.searchQuery !== this.state.searchQuery && this.state.searchQuery) {
+      this.updatePosition();
+    }
   }
 
   updatePosition = () => {
@@ -36,7 +42,9 @@ class GoogleMaps extends Component {
 
   render() {
     return (
-      <div id='map' />
+      <div className='row map-container'>
+        <div id='map' className='col s12 google-map box-shadow' />
+      </div>
     );
   }
 }

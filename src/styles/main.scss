@@ -97,3 +97,16 @@ a {
     background: linear-gradient(15deg, #ec3c3c, #e62f2f);
   }
 }
+
+.box-shadow {
+  box-shadow: 2px 3px 10px 1px #dddd;
+}
+/* Google map */
+.map-container {
+  margin-top: 15px;
+  height: 180px;
+  .google-map {
+    margin: 10px;
+    border-radius: 5px;
+  }
+}

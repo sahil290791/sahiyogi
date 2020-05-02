@@ -4,12 +4,11 @@ import {
   BrowserRouter,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 
 import './styles/main.scss';
 
-import Home from './js/containers/Home.js';
+import Home from './js/containers/Home';
 
 const App = () => {
   return (
@@ -21,9 +20,10 @@ const App = () => {
       </Switch>
     </div>
   );
-}
+};
 
 ReactDOM.render(
   <BrowserRouter>
     <App />
-  </BrowserRouter>, document.getElementById('app'));
+  </BrowserRouter>, document.getElementById('app')
+);
