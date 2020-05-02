@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const InfoCard = (props) => {
+const InfoBanner = (props) => {
   const { children, cardType } = props;
   const cardTheme = {
     error: 'error',
@@ -16,11 +16,11 @@ const InfoCard = (props) => {
   );
 };
 
-InfoCard.defaultProps = {
+InfoBanner.defaultProps = {
   cardType: 'info',
 };
 
-InfoCard.propTypes = {
+InfoBanner.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.element,
@@ -34,4 +34,4 @@ InfoCard.propTypes = {
   cardType: PropTypes.string,
 };
 
-export default InfoCard;
+export default InfoBanner;
