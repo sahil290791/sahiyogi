@@ -1,0 +1,78 @@
+Activity Category,Activity Subcategory,Detail,Containment Zone,Red Zone,Green Zone,Orange Zone
+Construction ,In-Situ Construction in Urban Areas,Where workers are available on site and no workers are required to be brought in from outside,N,Y,Y,Y
+Construction ,Construction of renewable energy projects in Urban Areas,,N,Y,Y,Y
+Construction / Industrial,MRNEGA Works in Rural Areas,,N,Y,Y,Y
+Construction / Industrial,Food Processing-Units in Rural Areas,,N,Y,Y,Y
+Construction / Industrial,Brick-Kilns in Rural Areas,,N,Y,Y,Y
+E- Commerce activities,Essential goods,,N,Y,Y,Y
+Education,School,,N,N,N,N
+Education,Colleges,,N,N,N,N
+Education,Training / Coaching institutions,,N,N,N,N
+Education,Other Educational Centres,,N,N,N,N
+Health Care,Hospital Out-Patient Departments (OPDs),"shall be permitted to operate , with social distancing norms and other safety precautions;",N,Y,Y,Y
+Health Care,Clinics,"shall be permitted to operate , with social distancing norms and other safety precautions;",N,Y,Y,Y
+Health Care,Medical clinics,"shall be permitted to operate , with social distancing norms and other safety precautions;",N,Y,Y,Y
+Hospitality,Hospitality Services,,N,N,N,N
+Hospitality,Hotels and Restaurants,,N,N,N,N
+Industrial Activity,manufacturing units of essential goods,,N,Y,Y,Y
+Industrial Activity,Production of Drugs,,N,Y,Y,Y
+Industrial Activity,Production of Pharmaceuticals Production,,N,Y,Y,Y
+Industrial Activity,Production of Medical Devices,,N,Y,Y,Y
+Industrial Activity,Production of Raw Materials and Intermediates for Drugs,,N,Y,Y,Y
+Industrial Activity,Production of Raw Materials and Intermediates for Pharmaceuticals,,N,Y,Y,Y
+Industrial Activity,Production of Raw Materials and Intermediates for Medical Devices,,N,Y,Y,Y
+Industrial Activity,Production Units Requiring Continuous Processing,,N,Y,Y,Y
+Industrial Activity,Supply Chain of Production Units Requiring Continuous Processing,,N,Y,Y,Y
+Industrial Activity,Manufacturing of IT hardware,,N,Y,Y,Y
+Industrial Activity,Jute Industry,Staggered Shifts and Social Distancing,N,Y,Y,Y
+Industrial Activity,Manufacturing units of packaging material,,N,Y,Y,Y
+Industrial Activity ,Establishment in Special Economic Zones (SEZs) in Urban Areas,with access control permitted.,N,Y,Y,Y
+Industrial Activity ,Establishment in viz. in Urban Areas,with access control permitted.,N,Y,Y,Y
+Industrial Activity ,Establishment in Export Oriented Units (EOUs) in Urban Areas,with access control permitted.,N,Y,Y,Y
+Industrial Activity ,Establishment in Industrial Estates in Urban Areas,with access control permitted.,N,Y,Y,Y
+Industrial Activity ,Establishment in Industrial Townships in Urban Areas,with access control permitted.,N,Y,Y,Y
+Livelihood,Private Sector,Can operate with upto 33% strength as per requirement,N,Y,Y,Y
+Livelihood,Agriculture,What are agriculture related activities?,N,Y,Y,Y
+Mailing,Courier,,N,Y,Y,Y
+Mailing,Postal,,N,Y,Y,Y
+Misc,Activities not specifically Prohibitied,,N,Y,Y,Y
+Misc,Activities Permitted with Restrictions in the Various Zones,,N,N,N,N
+Movement,Individual - Non Essential Between 7 PM to 7 AM,What are essential and non-essentials?,Perimeter Control 100% Aaroggya Setu app,N,N,N
+Movement,Individuals and Vehicles for Permitted Activities,,N,Y,Y,Y
+Movement,"Air, Roal and Rail Travel for Select Purposes",What are Select Purposes?,,,,
+Personal Grooming,Barber Shops,,N,N,Y,Y
+Personal Grooming,Spas,,N,N,Y,Y
+Personal Grooming,Saloons,,N,N,Y,Y
+Recreational - Large Gathering,Cinema Halls,,N,N,N,N
+Recreational - Large Gathering,Malls,"Shops in urban areas, for non-essential goods, are not allowed in Malls",N,N,N,N
+Recreational - Large Gathering,Gymnasiums,,N,N,N,N
+Recreational - Large Gathering,Sports Complexes,,N,N,N,N
+Recreational - Small Gathering,Social Gatherings,,N,N,N,N
+Recreational - Small Gathering,Political Gatherings,,N,N,N,N
+Recreational - Small Gathering,Cultural Gatherings,,N,N,N,N
+Recreational - Small Gathering,Miscelanious/ Uncategorized Gatherings,,N,N,N,N
+Religious,religious places/ places of worship for public,,N,N,N,N
+Services,Print and Electronic Media,,N,Y,Y,Y
+Services,IT and IT enabled services,,N,Y,Y,Y
+Services,data and call centres,,N,Y,Y,Y
+Services,cold storage and warehousing services,,N,Y,Y,Y
+Services,private security,,N,Y,Y,Y
+Services,facility management services,,N,Y,Y,Y
+Services,services provided by self-employed persons,Except for Barbers etc,N,Y,Y,Y
+Shopping/ Commerce,Shops in Rural Areas,"Without Distinction to the nature of goods, Except for Shopping Malls",N,Y,Y,Y
+Shopping/ Commerce,Markets  in Urban Areas,Only Essential Goods,N,Y,Y,Y
+Shopping/ Commerce,Market Complexes in Urban Areas,Only Essential Goods,N,Y,Y,Y
+Shopping/ Commerce,Standalone/ Single Shop in Urban Areas,"Permitted to remain open in urban areas, without any distinction of essential and non-essential.",N,Y,Y,Y
+Shopping/ Commerce,Neighbourhood (Colony Shops) in Urban Areas,"Permitted to remain open in urban areas, without any distinction of essential and non-essential.",N,Y,Y,Y
+Shopping/ Commerce,Shops in Residential Complexes in Urban Areas,"Permitted to remain open in urban areas, without any distinction of essential and non-essential.",N,Y,Y,Y
+Supply Chain,All goods,"All goods traffic is to be permitted. No State/ UT shall stop the movement of cargo for cross land-border trade under Treaties with neighboring countries. No separate pass of any sort is needed for such movement, which is essential for maintaining the supply chain of goods",N,Y,Y,Y
+Travel - Private,4 Wheel Vehicle,with a maximum of 2 persons (besides the driver),N,Y,Y,Y
+Travel - Private,2 Wheel Vehicle,"Movement of individuals and vehicles is allowed only for permitted activities,  with no pillion rider",N,Y,Y,Y
+Travel - Public,Air,,N,N,N,N
+Travel - Public,Rail,,N,N,N,N
+Travel - Public,Metro,,N,N,N,N
+Travel - Public,Inter-State Movement by Road,,N,N,N,N
+Travel - Public,Bus (Inter and Intra District),Buses can operate with upto 50% seating capacity and bus depots can operate with upto 50% capacity.,N,N,N,Y
+Travel - Public,Taxi / Uber / Ola (Taxis and Cab Aggregators),Taxis and cab aggregators will be permitted with 1 driver and 1 passenger only. Inter- district movement of individuals and vehicles will be allowed for permitted activities only.,N,N,Y,Y
+Travel - Public,Cycle Rickshaws,,N,N,Y,Y
+Travel - Public,Auto Rickshaws,,N,N,Y,Y

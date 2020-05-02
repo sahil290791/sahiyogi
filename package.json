@@ -8,7 +8,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "babel-node server.js",
     "dev": "webpack-dev-server --open --mode development",
     "build": "webpack --mode production --config webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -28,8 +28,11 @@
   },
   "homepage": "https://github.com/sahil290791/sahiyogi#readme",
   "dependencies": {
+    "@babel/node": "^7.8.7",
+    "csv-parser": "^2.3.2",
     "eslint-config-airbnb": "^18.1.0",
     "express": "^4.17.1",
+    "fs": "^0.0.1-security",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

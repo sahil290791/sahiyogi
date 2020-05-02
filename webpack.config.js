@@ -36,36 +36,37 @@ module.exports = {
         test: /\.html$/,
         use: [
           {
-            loader: "html-loader"
+            loader: 'html-loader'
           }
         ]
       },
       {
-         test: /\.(png|svg|jpg|gif)$/,
-         use: [
-           'file-loader'
-         ]
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [
+          'file-loader'
+        ]
       },
       {
-         test: /\.(woff|woff2|eot|ttf|otf)$/,
-         use: [
-           'file-loader'
-         ]
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        use: [
+          'file-loader'
+        ]
       }
     ]
   },
   resolve: {
-    extensions: [".js", ".jsx"]
+    extensions: ['.js', '.jsx']
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/templates/index.html",
-      filename: "index.html"
+      template: './src/templates/index.html',
+      filename: 'index.html'
     }),
     new CopyPlugin(
       [
         { from: path.resolve(APP_DIR, 'images'), to: path.resolve(__dirname, 'dist', 'images') },
-        { from: path.resolve(__dirname, 'public'), to: path.resolve(__dirname, 'dist') }
+        { from: path.resolve(__dirname, 'public'), to: path.resolve(__dirname, 'dist') },
+        { from: path.resolve(__dirname, 'data'), to: path.resolve(__dirname, 'dist') }
       ]
     ),
     new MiniCssExtractPlugin({
@@ -77,7 +78,7 @@ module.exports = {
     }),
   ],
   devServer: {
-    contentBase:  path.join(__dirname, 'dist'),
+    contentBase: path.join(__dirname, 'dist'),
     // contentBasePublicPath: '/public'
   }
 };
