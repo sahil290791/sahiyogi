@@ -21,18 +21,18 @@ const getCityFromPinCode = (pincode, options) => {
 
 const getZoneColor = (placeData, options) => {
   makeGetRequest({
-    url: `https://a582a0be.ngrok.io/api/v1/zone?district_name=${placeData.city}&state_name=${placeData.state}`,
-    withCredentials: true,
-    showAllowOrigin: true,
+    url: `http://lockdown-api.scripbox.io/api/v1/zone?district_name=${placeData.city}&state_name=${placeData.state}`,
+    withCredentials: false,
+    showAllowOrigin: false,
     ...options,
   });
 };
 
 const getActivityData = (zone, options) => {
   makeGetRequest({
-    url: `https://a582a0be.ngrok.io/api/v1/activities?zone=${zone}`,
+    url: `http://lockdown-api.scripbox.io/api/v1/activities?zone=${zone}`,
     withCredentials: false,
-    showAllowOrigin: true,
+    showAllowOrigin: false,
     ...options,
   });
 };

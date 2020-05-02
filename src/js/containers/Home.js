@@ -133,7 +133,7 @@ class Home extends Component {
           const data = res.body.data[0];
           this.setState({
             placeData: {
-              city: data.district,
+              city: data.district === 'Bangalore' ? 'Bengaluru' : data.district,
               state: data.state_name,
             }
           }, () => this.getZoneColorData());
