@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import SearchInputLoaderIcon from './SearchInputLoaderIcon';
 import SearchInputIcon from './SearchInputIcon';
 
 const SearchInput = (props) => {
   const {
-    value, inputChangeHandler, disabled, placeholder
+    value, inputChangeHandler, disabled, placeholder, isLoading
   } = props;
+  const icon = isLoading ? <SearchInputLoaderIcon /> : <SearchInputIcon />;
   return (
     <div className='c19-search-input-container'>
       <input
@@ -20,8 +22,8 @@ const SearchInput = (props) => {
         maxLength='6'
         inputMode='numeric'
       />
-      <button className={'c19-search-input-icon'}>
-        <SearchInputIcon />
+      <button type='button' className="c19-search-input-icon">
+        {icon}
       </button>
     </div>
   );
@@ -30,6 +32,7 @@ const SearchInput = (props) => {
 SearchInput.defaultProps = {
   value: null,
   disabled: false,
+  isLoading: false,
   placeholder: ''
 };
 
@@ -38,6 +41,7 @@ SearchInput.propTypes = {
   value: PropTypes.string,
   disabled: PropTypes.bool,
   placeholder: PropTypes.string,
+  isLoading: PropTypes.bool,
   // title: PropTypes.string.isRequired,
 };
 
