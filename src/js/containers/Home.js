@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 
 import Header from '../components/Header';
 import SearchInput from '../components/SearchInput';
-import InfoCard from '../components/InfoCard';
 import GoogleMaps from '../components/GoogleMaps';
+import InfoBanner from '../components/InfoBanner';
+import StatusTile from '../components/StatusTile';
 
 
 class Home extends Component {
@@ -28,9 +29,9 @@ class Home extends Component {
           <div className="row">
             <div className="col s12">
               <Header title="React App" />
-              <InfoCard cardType="info">
+              <InfoBanner cardType='info'>
                 <p>Welcome</p>
-              </InfoCard>
+              </InfoBanner>
               <SearchInput
                 placeholder="Enter your Pincode"
                 inputChangeHandler={this.updateSearchQuery}
@@ -47,6 +48,15 @@ class Home extends Component {
               <GoogleMaps
                 searchQuery={searchQuery}
               />
+            </div>
+          </div>
+          <div className='row no-gutters status-card-container'>
+            <div className='col-12'>
+              <div className='card-group'>
+                <StatusTile status='notallowed' title="Health Care" description="Hello World" />
+                <StatusTile status='allowed' title="Health Care" description="Helloafkafjalfkja lkfaj lajflka World" />
+                <StatusTile status='allowed' title="Health Care" description="Helloafkafjalfkja lkfaj lajflka World" />
+              </div>
             </div>
           </div>
         </div>
