@@ -49,31 +49,6 @@ a {
 }
 /* Search Input */
 
-.c19-search-input-container {
-  background: #fff;
-  box-shadow: 0 6px 8px rgba(102, 119, 136, 0.03), 0 1px 2px rgba(102, 119, 136, 0.3);
-  display: flex;
-  height: 64px;
-  align-items: center;
-  cursor: text;
-  width: 100%;
-
-  .c19-search-input {
-    font-size: 17px;
-    padding: 16px;
-    height: 64px;
-    border: 0;
-    width: 100%;
-    font-weight: 700;
-    color: #111;
-    min-width: 48px;
-
-    &:hover, &:focus, &:active {
-      outline: none;
-    }
-  }
-}
-
 .c19-status-section {
   margin-top: 16px;
 }

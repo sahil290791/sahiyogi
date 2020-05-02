@@ -9,8 +9,9 @@ const SearchInput = (props) => {
     value, inputChangeHandler, disabled, placeholder, isLoading
   } = props;
   const icon = isLoading ? <SearchInputLoaderIcon /> : <SearchInputIcon />;
+  const inputClass = isLoading || disabled ? 'disabled' : '';
   return (
-    <div className='c19-search-input-container'>
+    <div className={`c19-search-input-container ${inputClass}`}>
       <input
         className="c19-search-input"
         type='numeric'
