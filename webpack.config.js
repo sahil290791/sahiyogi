@@ -1,4 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const path = require('path');
 
 const APP_DIR = path.resolve(__dirname, 'src');
@@ -15,8 +17,9 @@ module.exports = {
       {
         test: /\.s[ac]ss$/i,
         use: [
+          MiniCssExtractPlugin.loader,
           // Creates `style` nodes from JS strings
-          'style-loader',
+          // 'style-loader',
           // Translates CSS into CommonJS
           'css-loader',
           // Compiles Sass to CSS
@@ -38,16 +41,16 @@ module.exports = {
         ]
       },
       {
-        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-              outputPath: 'fonts/'
-            }
-          }
-        ]
+         test: /\.(png|svg|jpg|gif)$/,
+         use: [
+           'file-loader'
+         ]
+      },
+      {
+         test: /\.(woff|woff2|eot|ttf|otf)$/,
+         use: [
+           'file-loader'
+         ]
       }
     ]
   },
@@ -58,9 +61,23 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./src/templates/index.html",
       filename: "index.html"
-    })
+    }),
+    new CopyPlugin(
+      [
+        { from: path.resolve(APP_DIR, 'images'), to: path.resolve(__dirname, 'dist', 'images') },
+        { from: path.resolve(__dirname, 'public'), to: path.resolve(__dirname, 'dist') }
+      ]
+    ),
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // all options are optional
+      filename: '[name].css',
+      chunkFilename: '[id].css',
+      ignoreOrder: false, // Enable to remove warnings about conflicting order
+    }),
   ],
   devServer: {
-    contentBase: './dist'
+    contentBase:  path.join(__dirname, 'dist'),
+    // contentBasePublicPath: '/public'
   }
 };
