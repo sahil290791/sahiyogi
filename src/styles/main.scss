@@ -106,8 +106,9 @@ a {
 .map-container {
   margin-top: 15px;
   height: 180px;
+
   .google-map {
-    margin: 10px;
     border-radius: 5px;
+    width: 100%;
   }
 }

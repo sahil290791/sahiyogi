@@ -42,8 +42,10 @@ class GoogleMaps extends Component {
 
   render() {
     return (
-      <div className='row map-container'>
-        <div id='map' className='col s12 google-map box-shadow' />
+      <div className='container'>
+        <div className='row map-container mb-2'>
+          <div id='map' className='col s12 google-map box-shadow' />
+        </div>
       </div>
     );
   }
