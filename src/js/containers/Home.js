@@ -1,10 +1,25 @@
 import React, { Component } from 'react';
 
+import Header from '../components/Header';
+import SearchInput from '../components/SearchInput';
+import InfoCard from '../components/InfoCard';
+
+
 class Home extends Component {
   render() {
     return (
-      <div>
-        Home
+      <div className="App">
+        <div className='container c-19-main-wrapper'>
+          <div className='row'>
+            <div className='col s12'>
+              <Header title="React App" />
+              <InfoCard cardType='info'>
+                <p>Welcome</p>
+              </InfoCard>
+              <SearchInput title="React App" />
+            </div>
+          </div>
+        </div>
       </div>
     )
   }
