@@ -12,6 +12,7 @@ class GoogleMaps extends Component {
   constructor(props) {
     super(props);
     this.map = null;
+    this.infoWindow = null;
     this.state = {
       // isWaiting: true,
       searchQuery: null,
@@ -31,9 +32,11 @@ class GoogleMaps extends Component {
 
   updatePosition = () => {
     const defaultLocation = this.state.location || { lat: 20.7492073, lng: 73.7042651 };
-    const myLatlng = new google.maps.LatLng(defaultLocation.lat, defaultLocation.lng);
-    this.map.setCenter(myLatlng);
-    new google.maps.Marker({ position: { ...defaultLocation }, map: this.map });
+    this.infoWindow.setPosition(defaultLocation);
+    this.infoWindow.setContent('Location found.');
+    this.infoWindow.open(this.map);
+    this.map.setCenter(defaultLocation);
+    // new google.maps.Marker({ position: { ...defaultLocation }, map: this.map });
   }
 
   initMap = () => {
@@ -41,6 +44,7 @@ class GoogleMaps extends Component {
       center: { lat: 20.7492073, lng: 73.7042651 },
       zoom: 6
     });
+    this.infoWindow = new google.maps.InfoWindow;
   }
 
   render() {

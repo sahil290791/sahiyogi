@@ -133,7 +133,7 @@ class Home extends Component {
       for (let i = 0; i < results.length; i++) {
         const place = results[i];
         this.setState({
-          isQuerying: true,
+          isQuerying: false,
           errors: null,
           location: {
             lat: place.geometry.location.lat(),
