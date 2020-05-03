@@ -358,7 +358,7 @@ class Home extends Component {
             searchQuery={searchQuery}
             location={location}
             map={this.map}
-            showMap={!_.isEmpty(searchQuery) && searchQuery.length === 6 && !_.isEmpty(placeData)}
+            showMap={!_.isEmpty(searchQuery) && searchQuery.length > 3 && !_.isEmpty(placeData)}
           />
           {
             _.isEmpty(errors) && !_.isEmpty(zoneData) && (
