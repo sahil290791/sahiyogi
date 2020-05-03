@@ -281,8 +281,13 @@ class Home extends Component {
       <div className="App">
         <div className="container c-19-main-wrapper">
           <div className="row">
-            <div className="col s12">
-              <Header title="Sahiyogi" description='Find covid related information for all districts' />
+            <div className="col-12">
+              <div className='mt-5'>
+                <Header
+                  title="Lockdown Handbook"
+                  description="Find out what's allowed and restricted in your area during the COVID-19 lockdown."
+                />
+              </div>
               <SearchInput
                 placeholder="Enter your Pincode"
                 inputChangeHandler={this.updateSearchQuery}
@@ -306,15 +311,16 @@ class Home extends Component {
           {
             !_.isEmpty(errors) && (
                 <div className='row'>
-                  <div className='col s12'>
-                    We could not find data for this pincode. Do not worry we are continously
-                     working on updating the website.
+                  <div className='col-12 text-center my-3'>
+                    We could not find data for this pincode.
+                    <br />
+                    Do not worry we are continously working on updating the website.
                   </div>
                 </div>
             )
           }
           {!_.isEmpty(this.state.placeData) && (
-            <p className='text-center helpline-text text-capitalize'>
+            <p className='text-center text-capitalize'>
               <LocationIcon />
               <span className='align-middle'>
                 {this.state.placeData.city}, {this.state.placeData.state.toLowerCase()}
@@ -337,10 +343,10 @@ class Home extends Component {
                         {this.renderCovidCases('Total Cases', zoneData.total_cases, 'orange')}
                         {this.renderCovidCases('Total Recovered', zoneData.total_recovered, 'green')}
                         {this.renderCovidCases('Total Deaths', zoneData.total_deaths, 'red')}
-                        <div className='col-12 helpline-text text-center'>
+                        <div className='col-12 helpline-text text-center my-2'>
                           <span>
                             <HelplineIcon />
-                            <span className='align-middle'>Helpline Number: </span>
+                            <span>Helpline Number: </span>
                           </span>
                           {_.map(helplineData.covid_helpline_numbers, (number, index) => {
                             return (

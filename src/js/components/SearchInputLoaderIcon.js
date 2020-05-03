@@ -16,7 +16,7 @@ function SearchInputLoaderIcon() {
         cy="50"
         r="35"
         fill="none"
-        stroke="#929292"
+        stroke="#656565"
         strokeDasharray="164.93361431346415 56.97787143782138"
         strokeWidth="6"
         transform="rotate(113.231 50 50)"

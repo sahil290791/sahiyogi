@@ -10,7 +10,7 @@ function LocationIcon() {
       version="1.1"
       viewBox="0 0 512 512"
       xmlSpace="preserve"
-      fill="#747474"
+      fill="#111111"
       width="18"
       height="18"
       style={{ marginRight: '6px' }}
