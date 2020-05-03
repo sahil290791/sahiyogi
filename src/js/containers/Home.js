@@ -270,9 +270,6 @@ class Home extends Component {
                       {this.renderCovidCases('Total Cases', zoneData.total_cases)}
                       {this.renderCovidCases('Total Recovered', zoneData.total_recovered)}
                       {this.renderCovidCases('Total Deaths', zoneData.total_deaths)}
-                      {_.map(helplineData.covid_helpline_numbers, (number) => {
-                        return <a href={`tel:${number}`}>{number}</a>
-                      })}
                     </div>
                     <div className='col s12'>
                       <div>Helpline Numbers</div>
