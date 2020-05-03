@@ -12,6 +12,7 @@ import Share from '../components/Share';
 import CategoryCards from '../components/CategoryCards';
 import StatusCard from '../components/StatusCard';
 import Footer from '../components/Footer';
+
 import {
   getActivityData, getDataFromLatLang, getZoneColor, getCityFromPinCode,
   getStateHelplineDetails, getLabsForAState
@@ -22,6 +23,8 @@ import { getLabs } from '../helpers/labsHelpers';
 const DATE_FORMAT = 'DD/MM/YYYY';
 
 class Home extends Component {
+  searchDebounced = null;
+
   constructor(props) {
     super(props);
     const showAskForLocation = window.location.href.indexOf('https') > -1;
@@ -58,6 +61,11 @@ class Home extends Component {
     placeData: {},
   });
 
+  debouncedSearch = (text, location, viaFourSq = false) => {
+    this.searchDebounced = _.debounce(() => this.initiateSearch(text, location, viaFourSq), 650);
+    this.searchDebounced();
+  }
+
   updateSearchQuery = (event) => {
     const searchText = event.target.value || '';
     this.setState({
@@ -65,7 +73,10 @@ class Home extends Component {
       ...this.resetData()
     });
     if (searchText.length >= 3) {
-      this.initiateSearch(searchText);
+      if (this.searchDebounced) {
+        this.searchDebounced.cancel();
+      }
+      this.debouncedSearch(searchText);
     }
   }
 
@@ -205,7 +216,6 @@ class Home extends Component {
     const venue = _.find(venues, (data) => {
       return data.location && data.location.postalCode;
     }) || {};
-    console.log('fs:', res.body.data);
     this.setState({
       searchQuery: venue.location.postalCode,
       errors: null,
@@ -279,8 +289,8 @@ class Home extends Component {
           <p>
             {label}
           </p>
-          <p className={`${!value ? '' : color} count ${!value ? 'small-text' : ''}`}>
-            {value ? value : 'Data currently not available with us'}
+          <p className={`${!value ? '' : color} count`}>
+            {value ? value : 0}
           </p>
         </div>
       </div>
