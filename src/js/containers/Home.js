@@ -7,6 +7,7 @@ import SearchInput from '../components/SearchInput';
 import CategorySearchInput from '../components/CategorySearchInput';
 import LocationIcon from '../components/LocationIcon';
 import HelplineIcon from '../components/HelplineIcon';
+import AccordionToggleIcon from '../components/AccordionToggleIcon';
 import GoogleMaps from '../components/GoogleMaps';
 import CategoryCards from '../components/CategoryCards';
 import StatusCard from '../components/StatusCard';
@@ -286,6 +287,14 @@ class Home extends Component {
     );
   }
 
+  renderLabTitle = (title) => {
+    return (
+      <h3 className='covid-lab-title'>
+        {title}
+      </h3>
+    );
+  }
+
   render() {
     const {
       searchQuery, isQuerying, activities, helplineData, zoneData, errors, location,
@@ -324,13 +333,13 @@ class Home extends Component {
           </div>
           {
             !_.isEmpty(errors) && (
-                <div className='row'>
-                  <div className='col-12 text-center my-3'>
-                    We could not find data for this pincode.
-                    <br />
-                    Do not worry we are continously working on updating the website.
-                  </div>
+              <div className='row'>
+                <div className='col-12 text-center my-3'>
+                  We could not find data for this pincode.
+                  <br />
+                  Do not worry we are continously working on updating the website.
                 </div>
+              </div>
             )
           }
           {!_.isEmpty(placeData) && (
@@ -347,43 +356,14 @@ class Home extends Component {
             map={this.map}
             showMap={!_.isEmpty(searchQuery) && searchQuery.length === 6 && !_.isEmpty(placeData)}
           />
-          {labs && !_.isEmpty(labs.areaWise) &&
-            _.map(labs.areaWise, (lab) => {
-              return (
-                <div className='row'>
-                  <div>Area wise labs</div>
-                  <div className='col s12'>
-                    <a href={lab.readmore} target="_blank">{lab.title}</a>
-                    {lab.address}
-                    {lab.description}
-                    {lab.city}
-                  </div>
-                </div>
-              );
-            })
-          }
-          {labs && !_.isEmpty(labs.stateWise) && (
-            _.map(labs.stateWise, (lab) => {
-              return (
-                <div className='row'>
-                  <div>State wise labs</div>
-                  <div className='col s12'>
-                    <a href={lab.readmore} target="_blank">{lab.title}</a>
-                    {lab.address}
-                    {lab.description}
-                    {lab.city}
-                  </div>
-                </div>
-              );
-            })
-          )}
           {
             _.isEmpty(errors) && !_.isEmpty(zoneData) && (
               <React.Fragment>
                 <div className='row'>
                   <div className='col-12'>
                     <p className='text-center helpline-text micro-text'>
-                      This data was Last updated on: {
+                      This data was Last updated on:
+                      {
                         moment(zoneData.last_updated_at, DATE_FORMAT).format('Do MMM, YYYY')
                       }
                     </p>
@@ -424,6 +404,98 @@ class Home extends Component {
                     <CategoryCards activities={activities} />
                   </div>
                 </div>
+                {labs && !_.isEmpty(labs.areaWise) && (
+                  <div className='status-card-container my-3'>
+                    {this.renderLabTitle('Covid Statewise Lab')}
+                    <div className="accordion" id="covid-area-lab-accordion">
+                      <div className="card accordion-category-header" id="area-wise-accordion-heading">
+                        <div className="card-header" id='state-area-accordion-heading'>
+                          <div className='collapsed accordion-title-link' data-toggle="collapse" data-target="#state-area-accordion" aria-expanded="true" aria-controls="state-area-accordion">
+                            <span>State Wise - Labs</span>
+                            <div className='arrow-down'>
+                              <AccordionToggleIcon />
+                            </div>
+                          </div>
+                        </div>
+                        <div id="state-area-accordion" className="collapse" aria-labelledby="area-wise-accordion-heading" data-parent="#covid-area-lab-accordion">
+                          <div className="card-body">
+                            <div className='c19-status-section'>
+                              <div className='row row-cols-1 row-cols-sm-3 no-gutters'>
+                                {_.map(labs.areaWise, (lab) => {
+                                  return (
+                                    <div className='col mb-4'>
+                                      <div className='c19-status-card c19-lab-card card h-100'>
+                                        <div className="card-body">
+                                          <a
+                                            href={lab.readmore}
+                                            target='_blank'
+                                            rel='noopener noreferrer'
+                                            className='mb-2'
+                                          >
+                                            {lab.title}
+                                          </a>
+                                          <div>{lab.address}</div>
+                                          <div>{lab.description}</div>
+                                          <div>{lab.city}</div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {labs && !_.isEmpty(labs.stateWise) && (
+                  <div className='status-card-container my-3'>
+                    {this.renderLabTitle('Covid Statewise Lab')}
+                    <div className="accordion" id="covid-state-lab-accordion">
+                      <div className="card accordion-category-header" id="state-wise-accordion-heading">
+                        <div className="card-header" id='state-wise-accordion-heading'>
+                          <div className='collapsed accordion-title-link' data-toggle="collapse" data-target="#state-wise-accordion" aria-expanded="true" aria-controls="state-wise-accordion">
+                            <span>State Wise - Labs</span>
+                            <div className='arrow-down'>
+                              <AccordionToggleIcon />
+                            </div>
+                          </div>
+                        </div>
+                        <div id="state-wise-accordion" className="collapse" aria-labelledby="state-wise-accordion-heading" data-parent="#covid-state-lab-accordion">
+                          <div className="card-body">
+                            <div className='c19-status-section'>
+                              <div className='row row-cols-1 row-cols-sm-3 no-gutters'>
+                                {_.map(labs.stateWise, (lab) => {
+                                  return (
+                                    <div className='col mb-4'>
+                                      <div className='c19-status-card c19-lab-card card h-100'>
+                                        <div className="card-body">
+                                          <a
+                                            href={lab.readmore}
+                                            target='_blank'
+                                            rel='noopener noreferrer'
+                                            className='mb-2'
+                                          >
+                                            {lab.title}
+                                          </a>
+                                          <div>{lab.address}</div>
+                                          <div>{lab.description}</div>
+                                          <div>{lab.city}</div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </React.Fragment>
             )
           }
