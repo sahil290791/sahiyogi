@@ -5,7 +5,6 @@ import _ from 'lodash';
 import Header from '../components/Header';
 import SearchInput from '../components/SearchInput';
 import CategorySearchInput from '../components/CategorySearchInput';
-import GoogleMaps from '../components/GoogleMaps';
 import CategoryCards from '../components/CategoryCards';
 import StatusCard from '../components/StatusCard';
 import {
@@ -209,15 +208,15 @@ class Home extends Component {
     });
   }
 
-  renderCovidCases = (label, value) => {
+  renderCovidCases = (label, value, color) => {
     return (
-      <div className='col s4'>
-        <div className='col s12'>
+      <div className='col-12 col-sm-4 text-center'>
+        <p>
           {label}
-        </div>
-        <div className='col s12'>
+        </p>
+        <p className={`${color} count`}>
           {value}
-        </div>
+        </p>
       </div>
     );
   }
@@ -265,11 +264,13 @@ class Home extends Component {
                       This data was Last updated on: {moment(zoneData.last_updated_at, DATE_FORMAT).format('Do MMM, YYYY')}
                     </div>
                     <StatusCard city={this.state.placeData.city} status={(zoneData && zoneData.zone) || 'red'} />
-                    <div>CoVID cases</div>
-                    <div className='row'>
-                      {this.renderCovidCases('Total Cases', zoneData.total_cases)}
-                      {this.renderCovidCases('Total Recovered', zoneData.total_recovered)}
-                      {this.renderCovidCases('Total Deaths', zoneData.total_deaths)}
+                    <div className='c19-total-stats'>
+                      <div className='text-center title mb-2'>COVID-19 Cases</div>
+                      <div className='row'>
+                        {this.renderCovidCases('Total Cases', zoneData.total_cases, 'orange')}
+                        {this.renderCovidCases('Total Recovered', zoneData.total_recovered, 'green')}
+                        {this.renderCovidCases('Total Deaths', zoneData.total_deaths, 'red')}
+                      </div>
                     </div>
                     <div className='col s12'>
                       <div>Helpline Numbers</div>

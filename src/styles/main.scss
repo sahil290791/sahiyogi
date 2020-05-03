@@ -63,6 +63,43 @@ a {
   }
 }
 
+/* Total Stats Card */
+.c19-total-stats {
+  background: #fff;
+  padding: 14px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  box-shadow: 1px 1px 10px 3px #e8e8e8;
+
+  .title {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  p {
+    margin: 0;
+    font-size: 16px;
+
+    &.count {
+      font-size: 24px;
+      font-weight: 600;
+    }
+
+    &.orange {
+      color: #f59142;
+    }
+
+    &.red {
+      color: #ec3c3c;
+    }
+
+    &.green {
+      color: #14af83;
+    }
+  }
+}
+
 .c19-status-banner,
 .c19-info-card {
   width: 100%;

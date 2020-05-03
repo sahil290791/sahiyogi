@@ -2,16 +2,8 @@ $status-card-space: 14px 12px;
 $status-card-font-size: 16px;
 $status-card-font-color: #111;
 
-
 .status-card-container {
   margin-top: 10px;
-
-  .card-group>.card:first-child {
-    margin-left: 0;
-  }
-  .card-group>.card:last-child {
-    margin-right: 0
-  }
 
   .accordion>.card>.card-header {
     padding: 0;

@@ -48,6 +48,10 @@ input {
     &:hover, &:focus, &:active {
       outline: none;
     }
+
+    &.c19-category-search-input {
+      font-size: 16px;
+    }
   }
 
   .c19-search-input-icon {
