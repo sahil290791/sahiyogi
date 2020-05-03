@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 
 import { dataCleaner } from '../data/dataCleaner';
 
+import { getCategoryIcon } from '../helpers/CategoryHelpers';
+
 import StatusTile from './StatusTile';
 import CategoryStatusTitle from './CategoryStatusTitle';
 import AccordionToggleIcon from './AccordionToggleIcon';
@@ -28,7 +30,7 @@ const CategoryCards = (props) => {
       const header = (
         <div className="card-header" id={`headingOne-${idAttribute}`}>
           <div className={`${items.length === 0 ? '' : 'collapsed'} accordion-title-link`} data-toggle="collapse" data-target={`#collapseOne-${idAttribute}`} aria-expanded="true" aria-controls="collapseOne">
-            <span className='d-inline-block mr-2'><i className='fas fa-camera fa-sm' /></span>
+            <span className='d-inline-block mr-2'><i className={`fas fa-${getCategoryIcon(idAttribute)} fa-sm`} /></span>
             <span>{activityName}</span>
             <div className='arrow-down'>
               <AccordionToggleIcon />
