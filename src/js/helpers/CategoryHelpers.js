@@ -74,7 +74,6 @@ const categoryIconMapping = [
 const DEFAULT_ICON = { iconName: 'tag' };
 
 export const getCategoryIcon = (category) => {
-  console.log(category);
   const icon = find(categoryIconMapping, (iconData) => {
     return iconData.category.toLowerCase() === category.toLowerCase();
   }) || DEFAULT_ICON;

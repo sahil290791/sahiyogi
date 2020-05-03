@@ -61,7 +61,6 @@ class Home extends Component {
 
   autocompleteInputListener = () => {
     const place = this.autocomplete.getPlace();
-    console.log('places ', place);
     this.cancelTextBasedSearch();
     const placeData = {};
     _.each(place.address_components, (atr) => {
