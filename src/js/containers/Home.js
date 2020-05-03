@@ -46,6 +46,16 @@ class Home extends Component {
     });
   }
 
+  resetData = () => ({
+    errors: null,
+    labs: {},
+    zoneData: {},
+    isQuerying: false,
+    activities: [],
+    helplineData: {},
+    placeData: {},
+  });
+
   updateSearchQuery = (event) => {
     const searchText = event.target.value || '';
     if (searchText.length > 6) {
@@ -53,13 +63,7 @@ class Home extends Component {
     }
     this.setState({
       searchQuery: searchText,
-      errors: null,
-      labs: {},
-      zoneData: {},
-      isQuerying: false,
-      activities: [],
-      helplineData: {},
-      placeData: {},
+      ...this.resetData()
     });
     if (searchText.length === 6) {
       this.initiateSearch(searchText);
@@ -257,6 +261,8 @@ class Home extends Component {
         },
         onError: (err) => {
           this.setState({
+            ...this.resetData(),
+            isQuerying: false,
             errors: { pincode: 'Data for this pincode not found' }
           })
           console.log(err);
@@ -281,7 +287,7 @@ class Home extends Component {
   render() {
     const {
       searchQuery, isQuerying, activities, helplineData, zoneData, errors, location,
-      showAskForLocation, labs
+      showAskForLocation, labs, placeData
     } = this.state;
     return (
       <div className="App">
@@ -325,15 +331,20 @@ class Home extends Component {
                 </div>
             )
           }
-          {!_.isEmpty(this.state.placeData) && (
+          {!_.isEmpty(placeData) && (
             <p className='text-center text-capitalize'>
               <LocationIcon />
               <span className='align-middle'>
-                {this.state.placeData.city}, {this.state.placeData.state.toLowerCase()}
+                {placeData.city}, {placeData.state.toLowerCase()}
               </span>
             </p>
           )}
-          <GoogleMaps searchQuery={searchQuery} location={location} map={this.map} />
+          <GoogleMaps
+            searchQuery={searchQuery}
+            location={location}
+            map={this.map}
+            showMap={!_.isEmpty(searchQuery) && searchQuery.length === 6 && !_.isEmpty(placeData)}
+          />
           {labs && !_.isEmpty(labs.areaWise) &&
             _.map(labs.areaWise, (lab) => {
               return (

@@ -7,7 +7,8 @@ class GoogleMaps extends Component {
     return {
       searchQuery: props.searchQuery,
       location: props.location,
-      map: props.map
+      map: props.map,
+      showMap: props.showMap,
     };
   }
 
@@ -51,7 +52,7 @@ class GoogleMaps extends Component {
   render() {
     const { searchQuery } = this.state;
     return (
-      <div className={`container ${!isEmpty(searchQuery) && searchQuery.length === 6 ? '' : 'd-none'}`}>
+      <div className={`container ${this.state.showMap ? '' : 'd-none'}`}>
         <div className='row map-container mb-2'>
           <div id='map' className='col s12 google-map box-shadow' />
         </div>
@@ -68,7 +69,8 @@ GoogleMaps.defaultProps = {
 GoogleMaps.propTypes = {
   searchQuery: PropTypes.string,
   location: PropTypes.object,
-  map: PropTypes.object.isRequired
+  map: PropTypes.object.isRequired,
+  showMap: PropTypes.bool.isRequired,
 };
 
 export default GoogleMaps;
