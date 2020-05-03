@@ -478,7 +478,7 @@ class Home extends Component {
                                       <div className='c19-status-card c19-lab-card card h-100'>
                                         <div className="card-body">
                                           <a
-                                            href={lab.readmore}
+                                            href={`https://covid.icmr.org.in${lab.readmore}`}
                                             target='_blank'
                                             rel='noopener noreferrer'
                                             className='mb-2'
