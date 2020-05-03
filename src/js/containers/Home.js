@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
+
 import Header from '../components/Header';
-import CategoryStatusTitle from '../components/CategoryStatusTitle';
 import SearchInput from '../components/SearchInput';
 import CategorySearchInput from '../components/CategorySearchInput';
 import GoogleMaps from '../components/GoogleMaps';
-// import InfoBanner from '../components/InfoBanner';
+import CategoryCards from '../components/CategoryCards';
 import StatusCard from '../components/StatusCard';
-import StatusTile from '../components/StatusTile';
-import AccordionToggleIcon from '../components/AccordionToggleIcon';
-import { getActivityData, getDataFromLatLang, getZoneColor, getCityFromPinCode } from '../Api/index';
+import {
+  getActivityData, getDataFromLatLang, getZoneColor, getCityFromPinCode
+} from '../Api/index';
 
 class Home extends Component {
   constructor(props) {
@@ -18,7 +18,7 @@ class Home extends Component {
       isQuerying: false,
       location: {},
       error: null,
-      activities: {},
+      activities: [],
       placeData: {}
     };
     this.map = null;
@@ -33,6 +33,8 @@ class Home extends Component {
     this.setState({
       searchQuery: searchText,
       error: null,
+      activities: [],
+      placeData: {},
     });
     if (searchText.length === 6) {
       this.initiateSearch(searchText);
@@ -79,7 +81,7 @@ class Home extends Component {
 
   handleActivities = (data) => {
     this.setState({
-      activities: data.body,
+      activities: data.body.data.activities,
     });
   }
 
@@ -110,20 +112,23 @@ class Home extends Component {
 
   initiateSearch = (searchText = '', location = null) => {
     this.setState({ isQuerying: true });
-    this.searchCityViaPincode(searchText);
-    // const map = new window.google.maps.Map(document.getElementById('map'), {
-    //   zoom: 15,
-    //   center: this.india,
-    // });
-    //
-    // const request = {
-    //   location: location || this.india,
-    //   radius: '500',
-    //   fields: ['address_component'],
-    //   query: searchText
-    // };
-    // const service = new window.google.maps.places.PlacesService(map);
-    // service.textSearch(request, this.callback);
+    if (!location) {
+      this.searchCityViaPincode(searchText);
+    } else {
+      const map = new window.google.maps.Map(document.getElementById('map'), {
+        zoom: 15,
+        center: this.india,
+      });
+
+      const request = {
+        location: location || this.india,
+        radius: '500',
+        fields: ['address_component'],
+        query: searchText
+      };
+      const service = new window.google.maps.places.PlacesService(map);
+      service.textSearch(request, this.callback);
+    }
   }
 
   searchCityViaPincode = (searchText) => {
@@ -215,68 +220,7 @@ class Home extends Component {
                   placeholder='Search by category'
                 />
               </div>
-              <div className="accordion" id="category-accordion">
-                <div className="card accordion-category-header">
-                  <div className="card-header" id="headingOne">
-                    <div className="accordion-title-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                      <span>Health Care</span>
-                      <div className='arrow-down'>
-                        <AccordionToggleIcon />
-                      </div>
-                    </div>
-                  </div>
-                  <div id="collapseOne" className="collapse show" aria-labelledby="headingOne" data-parent="#category-accordion">
-                    <div className="card-body">
-                      <div className='c19-status-section'>
-                        <CategoryStatusTitle status='allowed' title='Allowed' />
-                        <div className='card-group'>
-                          <StatusTile status='allowed' title="Health Care" description="Hello World" />
-                          <StatusTile status='allowed' title="Health Care" description="Helloafkafjalfkja lkfaj lajflka World" />
-                          <StatusTile status='allowed' title="Health Care" description="Helloafkafjalfkja lkfaj lajflka World" />
-                        </div>
-                      </div>
-                      <div className='c19-status-section'>
-                        <CategoryStatusTitle status='restricted' title='Restricted' />
-                        <div className='card-group'>
-                          <StatusTile status='notallowed' title="Health Care" description="Hello World" />
-                          <StatusTile status='notallowed' title="Health Care" description="Helloafkafjalfkja lkfaj lajflka World" />
-                          <StatusTile status='notallowed' title="Health Care" description="Helloafkafjalfkja lkfaj lajflka World" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="card accordion-category-header">
-                  <div className="card-header" id="headingTwo">
-                    <div className="accordion-title-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                      <span>Education</span>
-                      <div className='arrow-down'>
-                        <AccordionToggleIcon />
-                      </div>
-                    </div>
-                  </div>
-                  <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo" data-parent="#category-accordion">
-                    <div className="card-body">
-                      <div className='c19-status-section'>
-                        <CategoryStatusTitle status='allowed' title='Allowed' />
-                        <div className='card-group'>
-                          <StatusTile status='allowed' title="education" description="Hello World" />
-                          <StatusTile status='allowed' title="education" description="Helloafkafjalfkja lkfaj lajflka World" />
-                          <StatusTile status='allowed' title="education" description="Helloafkafjalfkja lkfaj lajflka World" />
-                        </div>
-                      </div>
-                      <div className='c19-status-section'>
-                        <CategoryStatusTitle status='restricted' title='Restricted' />
-                        <div className='card-group'>
-                          <StatusTile status='notallowed' title="education" description="Hello World" />
-                          <StatusTile status='notallowed' title="education" description="Helloafkafjalfkja lkfaj lajflka World" />
-                          <StatusTile status='notallowed' title="education" description="Helloafkafjalfkja lkfaj lajflka World" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <CategoryCards activities={this.state.activities} />
             </div>
           </div>
         </div>
