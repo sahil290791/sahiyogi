@@ -264,8 +264,8 @@ class Home extends Component {
         <p>
           {label}
         </p>
-        <p className={`${color} count`}>
-          {value}
+        <p className={`${!value ? '' : color} count ${!value ? 'small-text' : ''}`}>
+          {value ? value : 'Data currently not available with us'}
         </p>
       </div>
     );
