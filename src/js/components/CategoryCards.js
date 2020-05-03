@@ -27,7 +27,7 @@ const CategoryCards = (props) => {
       const notAllowedActivities = _.filter(activityList, ['allowed', false]);
       const header = (
         <div className="card-header" id={`headingOne-${idAttribute}`}>
-          <div className="accordion-title-link" type="button" data-toggle="collapse" data-target={`#collapseOne-${idAttribute}`} aria-expanded="true" aria-controls="collapseOne">
+          <div className={`${items.length === 0 ? '' : 'collapsed'} accordion-title-link`} type="button" data-toggle="collapse" data-target={`#collapseOne-${idAttribute}`} aria-expanded="true" aria-controls="collapseOne">
             <span>{activityName}</span>
             <div className='arrow-down'>
               <AccordionToggleIcon />

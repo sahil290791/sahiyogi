@@ -33,7 +33,7 @@ class GoogleMaps extends Component {
     const defaultLocation = this.state.location || { lat: 20.7492073, lng: 73.7042651 };
     const myLatlng = new google.maps.LatLng(defaultLocation.lat, defaultLocation.lng);
     this.map.setCenter(myLatlng);
-    new google.maps.Marker({ position: myLatlng, map: this.map });
+    new google.maps.Marker({ position: { ...defaultLocation }, map: this.map });
   }
 
   initMap = () => {
