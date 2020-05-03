@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { isEmpty } from 'lodash';
 
 class GoogleMaps extends Component {
   static getDerivedStateFromProps(props, state) {
@@ -48,8 +49,9 @@ class GoogleMaps extends Component {
   }
 
   render() {
+    const { searchQuery } = this.state;
     return (
-      <div className='container'>
+      <div className={`container ${!isEmpty(searchQuery) && searchQuery.length === 6 ? '' : 'd-none'}`}>
         <div className='row map-container mb-2'>
           <div id='map' className='col s12 google-map box-shadow' />
         </div>
