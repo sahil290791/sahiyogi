@@ -102,12 +102,15 @@ class Home extends Component {
   }
 
   getZoneColorData = () => {
-    const { placeData } = this.state;
+    const { placeData, errors } = this.state;
     getZoneColor(placeData, {
       cb: this.handleZoneData,
       onError: (data) => this.setState({
         isQuerying: false,
-        error: data,
+        errors: {
+          ...errors,
+          zoneData: 'Data for pincode is not available as of now.\n We are continously updating our database.'
+        },
       })
     });
   }
@@ -127,6 +130,7 @@ class Home extends Component {
   }
 
   initiateSearch = (searchText = '', location = null) => {
+    // google endpoint
     this.setState({ isQuerying: true });
     if (!location) {
       this.searchCityViaPincode(searchText);
@@ -156,10 +160,14 @@ class Home extends Component {
             placeData: {
               city: data.district === 'Bengaluru' ? 'Bangalore' : data.district,
               state: data.state_name,
+              errors: null,
             }
           }, () => this.getZoneColorData());
         },
         onError: (err) => {
+          this.setState({
+            errors: { pincode: 'Data for this pincode not found' }
+          })
           console.log(err);
         }
       });
@@ -198,7 +206,7 @@ class Home extends Component {
   }
 
   render() {
-    const { searchQuery, isQuerying, activities, helplineData, zoneData } = this.state;
+    const { searchQuery, isQuerying, activities, helplineData, zoneData, errors } = this.state;
     return (
       <div className="App">
         <div className="container c-19-main-wrapper">
@@ -215,40 +223,56 @@ class Home extends Component {
                 or
               </p>
               <div className="text-center">
-                <button type='button' className='text-link' onClick={this.geolocate}>
+                <a className='text-link' onClick={this.geolocate}>
                   Use device location
-                </button>
+                </a>
               </div>
             </div>
           </div>
-          <div className='row'>
-            <div className='col s12'>
-              <StatusCard city={this.state.placeData.city} status={(zoneData && zoneData.zone) || 'red'} />
-                <div className='col s12'>
-                  <div>CoVID cases</div>
-                  {}
-                  {_.map(helplineData.covid_helpline_numbers, (number) => {
-                    return <a href={`tel:${number}`}>{number}</a>
-                  })}
+          {
+            !_.isEmpty(errors) && (
+                <div className='row'>
+                  <div className='col s12'>
+                    We could find data for this pincode. Do not worry we are continously
+                     working on updating the website.
+                  </div>
                 </div>
-              <div className='col s12'>
-                <div>Helpline Numbers</div>
-                {_.map(helplineData.covid_helpline_numbers, (number) => {
-                  return <a href={`tel:${number}`}>{number}</a>
-                })}
-              </div>
-            </div>
-          </div>
-          <div className='row no-gutters status-card-container'>
-            <div className='col-12'>
-              <div className='mb-3'>
-                <CategorySearchInput
-                  placeholder='Search by category'
-                />
-              </div>
-              <CategoryCards activities={activities} />
-            </div>
-          </div>
+            )
+          }
+          {
+            _.isEmpty(errors) && (
+              <React.Fragment>
+                <div className='row'>
+                  <div className='col s12'>
+                    <StatusCard city={this.state.placeData.city} status={(zoneData && zoneData.zone) || 'red'} />
+                      <div className='col s12'>
+                        <div>CoVID cases</div>
+                        {_.map(zoneData)}
+                        {_.map(helplineData.covid_helpline_numbers, (number) => {
+                          return <a href={`tel:${number}`}>{number}</a>
+                        })}
+                      </div>
+                    <div className='col s12'>
+                      <div>Helpline Numbers</div>
+                      {_.map(helplineData.covid_helpline_numbers, (number) => {
+                        return <a href={`tel:${number}`}>{number}</a>
+                      })}
+                    </div>
+                  </div>
+                </div>
+                <div className='row no-gutters status-card-container'>
+                  <div className='col-12'>
+                    <div className='mb-3'>
+                      <CategorySearchInput
+                        placeholder='Search by category'
+                      />
+                    </div>
+                    <CategoryCards activities={activities} />
+                  </div>
+                </div>
+              </React.Fragment>
+            )
+          }
         </div>
       </div>
     );
