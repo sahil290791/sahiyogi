@@ -10,7 +10,9 @@
     ],
     "globals": {
         "Atomics": "readonly",
-        "SharedArrayBuffer": "readonly"
+        "SharedArrayBuffer": "readonly",
+        "$": "readonly",
+        "google": "readonly"
     },
     "parserOptions": {
         "ecmaFeatures": {
@@ -26,6 +28,7 @@
       "react/jsx-filename-extension": "off",
       "react/jsx-fragments": "off",
       "comma-dangle": "off",
+      "arrow-body-style": "off",
       "guard-for-in": "off",
       "no-restricted-syntax": "off",
       "jsx-quotes": "off",

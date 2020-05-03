@@ -440,7 +440,7 @@ class Home extends Component {
                         })}
                       </div>
                       <div className='col-12 helpline-text text-center my-2'>
-                        <a href="#c19-lab-list" className='micro-text'>
+                        <a href="#c19-lab-list" className='micro-text' onClick={() => $('.accordion-title-link').trigger('click')}>
                           Looking for COVID 19 testing centres near you?
                         </a>
                       </div>
