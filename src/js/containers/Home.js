@@ -313,7 +313,7 @@ class Home extends Component {
                   />
                 </div>
                 <SearchInput
-                  placeholder="Please Enter your Pincode/ City or Locality name"
+                  placeholder="Pincode/ City or Locality name"
                   inputChangeHandler={this.updateSearchQuery}
                   value={searchQuery}
                   isLoading={isQuerying}

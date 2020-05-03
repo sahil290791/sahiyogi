@@ -4,6 +4,12 @@
     font-weight: 700;
   }
 
+  input {
+    &::placeholder {
+      font-size: 14px;
+    }
+  }
+
   .c19-total-stats {
     .card-deck .card {
       margin-bottom: 10px;
