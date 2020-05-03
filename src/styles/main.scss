@@ -13,6 +13,15 @@ body {
   margin-bottom: 60px;
 }
 
+.App {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  transition: all 0.4s ease-in;
+}
+
 .covid-lab-title {
   font-size: 20px;
   font-weight: 600;
