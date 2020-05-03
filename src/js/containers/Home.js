@@ -354,7 +354,11 @@ class Home extends Component {
               <React.Fragment>
                 <div className='row'>
                   <div className='col-12'>
-                    <StatusCard city={this.state.placeData.city} status={(zoneData && zoneData.zone) || 'red'} />
+                    <StatusCard
+                      city={this.state.placeData.city}
+                      state={this.state.placeData.state}
+                      status={(zoneData && zoneData.zone) || 'red'}
+                    />
                     <div className='c19-total-stats'>
                       <div className='text-center title mb-2'>COVID-19 Cases</div>
                       <div className="card-deck">
