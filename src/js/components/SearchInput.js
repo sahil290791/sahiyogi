@@ -22,6 +22,7 @@ const SearchInput = (props) => {
       <input
         className="c19-search-input c19-searchinput-js"
         type='text'
+        id='search-input'
         value={value}
         placeholder={placeholder}
         onChange={inputChangeHandler}

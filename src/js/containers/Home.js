@@ -42,6 +42,7 @@ class Home extends Component {
     };
     this.map = null;
     this.defaultLocation = { lat: 20.7492073, lng: 73.7042651 };
+    this.autocomplete = null;
   }
 
   componentDidMount() {
@@ -49,6 +50,39 @@ class Home extends Component {
       center: this.defaultLocation,
       zoom: 6
     });
+    const input = document.getElementById('search-input');
+    this.autocomplete = new window.google.maps.places.Autocomplete(input);
+    this.autocomplete.bindTo('bounds', this.map);
+    this.autocomplete.setFields(
+      ['address_components', 'geometry', 'icon', 'name']
+    );
+    this.autocomplete.addListener('place_changed', this.autocompleteInputListener);
+  }
+
+  autocompleteInputListener = () => {
+    const place = this.autocomplete.getPlace();
+    console.log('places ', place);
+    this.searchDebounced.cancel();
+    const placeData = {};
+    _.each(place.address_components, (atr) => {
+      const isCityPresent = _.includes(atr.types, 'administrative_area_level_2') || _.includes(atr.types, 'locality');
+      const isStatePresent = _.includes(atr.types, 'administrative_area_level_1');
+      if (isCityPresent) {
+        placeData.city = atr.long_name;
+      } else if (isStatePresent) {
+        placeData.state = atr.long_name;
+      }
+    });
+    this.setState({
+      isQuerying: true,
+      errors: null,
+      location: {
+        lat: place.geometry.location.lat(),
+        lng: place.geometry.location.lng()
+      },
+      placeData,
+      searchQuery: place.name,
+    }, () => this.getZoneColorData());
   }
 
   resetData = () => ({
@@ -147,7 +181,7 @@ class Home extends Component {
     const { placeData, errors } = this.state;
     getZoneColor(placeData, {
       cb: this.handleZoneData,
-      onError: (data) => this.setState({
+      onError: () => this.setState({
         isQuerying: false,
         errors: {
           ...errors,
