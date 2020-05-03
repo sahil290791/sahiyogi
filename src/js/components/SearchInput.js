@@ -14,7 +14,7 @@ const SearchInput = (props) => {
     <div className={`c19-search-input-container ${inputClass}`}>
       <input
         className="c19-search-input"
-        type='numeric'
+        type='number'
         pattern="[0-9]*"
         value={value}
         placeholder={placeholder}

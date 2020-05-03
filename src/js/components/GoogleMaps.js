@@ -39,7 +39,7 @@ class GoogleMaps extends Component {
   initMap = () => {
     this.map = new window.google.maps.Map(document.getElementById('map'), {
       center: { lat: 20.7492073, lng: 73.7042651 },
-      zoom: 8
+      zoom: 6
     });
   }
 

@@ -149,7 +149,7 @@ class Home extends Component {
 
   fetchDatafromMaps = (searchText = '', location) => {
     const map = new window.google.maps.Map(document.getElementById('map'), {
-      zoom: 15,
+      zoom: 6,
       center: this.india,
     });
 
