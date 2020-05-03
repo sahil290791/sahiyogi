@@ -39,7 +39,7 @@
       $(document).ready(function(){
         $('body').on("keyup", ".c19-category-search-input", function() {
           var value = $(this).val().toLowerCase();
-          $(".accordion-category-header").filter(function() {
+          $("#category-accordion .accordion-category-header").filter(function() {
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
           });
         });
