@@ -10,7 +10,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
-    filename: 'bundle.js'
+    filename: 'bundle.[contenthash].js'
   },
   module: {
     rules: [
@@ -72,8 +72,8 @@ module.exports = {
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // all options are optional
-      filename: '[name].css',
-      chunkFilename: '[id].css',
+      filename: '[name].[contenthash].css',
+      chunkFilename: '[id].[contenthash].css',
       ignoreOrder: false, // Enable to remove warnings about conflicting order
     }),
   ],
