@@ -1,0 +1,18 @@
+@media only screen and (max-width: 576px) {
+  .c19-status-card {
+    &.card {
+      margin: 10px 0;
+    }
+  }
+  h1 {
+    font-size: 28px;
+    font-weight: 700;
+  }
+
+}
+
+@media only screen and (min-width: 577px) {
+  .header-container {
+    margin-top: 20px;
+  }
+}

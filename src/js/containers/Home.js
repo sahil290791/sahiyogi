@@ -282,7 +282,7 @@ class Home extends Component {
         <div className="container c-19-main-wrapper">
           <div className="row">
             <div className="col-12">
-              <div className='mt-5'>
+              <div className='header-container'>
                 <Header
                   title="Lockdown Handbook"
                   description="Find out what's allowed and restricted in your area during the COVID-19 lockdown."
