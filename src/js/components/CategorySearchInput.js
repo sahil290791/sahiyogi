@@ -11,7 +11,7 @@ const CategorySearchInput = (props) => {
   const icon = isLoading ? <SearchInputLoaderIcon /> : <SearchInputIcon />;
   const inputClass = isLoading || disabled ? 'disabled' : '';
   return (
-    <div className={`c19-search-input-container ${inputClass}`}>
+    <div className={`col-12 col-sm-4c19-search-input-container ${inputClass}`}>
       <input
         className="c19-search-input c19-category-search-input"
         placeholder={placeholder}

@@ -7,11 +7,18 @@ const StatusTile = (props) => {
     allowed: 'allowed',
     notallowed: 'not-allowed',
   };
+  let descriptionView = null;
+  if (description) {
+    descriptionView = (
+      <p className='card-description'>{description}</p>
+    );
+  }
+
   return (
-    <div className={`c19-status-card card ${cardTheme[status]}`}>
+    <div className={`c19-status-card card h-100 ${cardTheme[status]}`}>
       <div className="card-body">
         <p className='card-title'>{title}</p>
-        {{ description } && <p className='card-description'>{description}</p>}
+        {descriptionView}
       </div>
     </div>
   );
