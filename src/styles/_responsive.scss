@@ -1,17 +1,20 @@
 @media only screen and (max-width: 576px) {
-  .c19-status-card {
-    &.card {
-      margin: 10px 0;
-    }
-  }
   h1 {
     font-size: 28px;
     font-weight: 700;
   }
+
+  .c19-total-stats {
+    .card-deck .card {
+      margin-bottom: 10px;
+    }
+  }
+
   .status-card-container {
     .accordion>.card>.card-header {
       .accordion-title-link {
         font-size: 16px;
+        padding: 12px 10px;
       }
     }
   }
@@ -34,6 +37,26 @@
 
   .helpline-text.micro-text {
     font-size: 12px;
+  }
+
+  .c19-status-section {
+    .c19-category-title {
+      margin: 16px 0px 8px 0px;
+    }
+
+    .c19-status-card {
+      &.card {
+        margin: 10px 0;
+      }
+    }
+
+    &.c19-allowed-list .c19-status-card.card {
+      border: 1px solid #14af83 !important;
+    }
+
+    &.c19-restricted-list .c19-status-card.card {
+      border: 1px solid #ec3c3c !important;
+    }
   }
 }
 

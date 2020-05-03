@@ -10,6 +10,7 @@ import AccordionToggleIcon from '../components/AccordionToggleIcon';
 import GoogleMaps from '../components/GoogleMaps';
 import CategoryCards from '../components/CategoryCards';
 import StatusCard from '../components/StatusCard';
+import Footer from '../components/Footer';
 import {
   getActivityData, getDataFromLatLang, getZoneColor, getCityFromPinCode,
   getStateHelplineDetails, getLabsForAState
@@ -275,13 +276,15 @@ class Home extends Component {
 
   renderCovidCases = (label, value, color) => {
     return (
-      <div className='col-12 col-sm-4 text-center'>
-        <p>
-          {label}
-        </p>
-        <p className={`${!value ? '' : color} count ${!value ? 'small-text' : ''}`}>
-          {value ? value : 'Data currently not available with us'}
-        </p>
+      <div className='card'>
+        <div className='card-body text-center'>
+          <p>
+            {label}
+          </p>
+          <p className={`${!value ? '' : color} count ${!value ? 'small-text' : ''}`}>
+            {value ? value : 'Data currently not available with us'}
+          </p>
+        </div>
       </div>
     );
   }
@@ -354,40 +357,40 @@ class Home extends Component {
               <React.Fragment>
                 <div className='row'>
                   <div className='col-12'>
-                    <p className='text-center helpline-text micro-text'>
-                      This data was Last updated on:
-                      {
-                        moment(zoneData.last_updated_at, DATE_FORMAT).format('Do MMM, YYYY')
-                      }
-                    </p>
                     <StatusCard city={this.state.placeData.city} status={(zoneData && zoneData.zone) || 'red'} />
                     <div className='c19-total-stats'>
                       <div className='text-center title mb-2'>COVID-19 Cases</div>
-                      <div className='row'>
+                      <div className="card-deck">
                         {this.renderCovidCases('Total Cases', zoneData.total_cases, 'orange')}
                         {this.renderCovidCases('Total Recovered', zoneData.total_recovered, 'green')}
                         {this.renderCovidCases('Total Deaths', zoneData.total_deaths, 'red')}
-                        <div className='col-12 helpline-text text-center mt-3 mb-0'>
-                          <span>
-                            <HelplineIcon />
-                            <span>Helpline Number: </span>
-                          </span>
-                          {_.map(helplineData.covid_helpline_numbers, (number, index) => {
-                            return (
-                              <span>
-                                <a href={`tel:${number}`}>
-                                  {number}
-                                </a>
-                                {(index !== helplineData.covid_helpline_numbers.length - 1) ? `${' / '}` : ''}
-                              </span>
-                            );
-                          })}
-                        </div>
-                        <div className='col-12 helpline-text text-center my-2'>
-                          <a href="#state-wise-accordion-heading" className='micro-text'>
-                            Looking for COVID 19 testing centres near you?
-                          </a>
-                        </div>
+                      </div>
+                      <p className='text-center helpline-text micro-text mt-3'>
+                        This data was Last updated on:
+                        {
+                          moment(zoneData.last_updated_at, DATE_FORMAT).format('Do MMM, YYYY')
+                        }
+                      </p>
+                      <div className='col-12 helpline-text text-center mt-3 mb-0'>
+                        <span>
+                          <HelplineIcon />
+                          <span>Helpline Number: </span>
+                        </span>
+                        {_.map(helplineData.covid_helpline_numbers, (number, index) => {
+                          return (
+                            <span>
+                              <a href={`tel:${number}`}>
+                                {number}
+                              </a>
+                              {(index !== helplineData.covid_helpline_numbers.length - 1) ? `${' / '}` : ''}
+                            </span>
+                          );
+                        })}
+                      </div>
+                      <div className='col-12 helpline-text text-center my-2'>
+                        <a href="#c19-lab-list" className='micro-text'>
+                          Looking for COVID 19 testing centres near you?
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -402,98 +405,103 @@ class Home extends Component {
                     <CategoryCards activities={activities} />
                   </div>
                 </div>
-                {labs && !_.isEmpty(labs.areaWise) && (
-                  <div className='status-card-container my-3'>
-                    {this.renderLabTitle('Covid Statewise Lab')}
-                    <div className="accordion" id="covid-area-lab-accordion">
-                      <div className="card accordion-category-header" id="area-wise-accordion-heading">
-                        <div className="card-header" id='state-area-accordion-heading'>
-                          <div className='collapsed accordion-title-link' data-toggle="collapse" data-target="#state-area-accordion" aria-expanded="true" aria-controls="state-area-accordion">
-                            <span>State Wise - Labs</span>
-                            <div className='arrow-down'>
-                              <AccordionToggleIcon />
+                <div id="c19-lab-list">
+                  {labs && !_.isEmpty(labs.areaWise) && (
+                    <div className='status-card-container my-3'>
+                      {this.renderLabTitle('Covid Statewise Lab')}
+                      <div className="accordion" id="covid-area-lab-accordion">
+                        <div className="card accordion-category-header" id="area-wise-accordion-heading">
+                          <div className="card-header" id='state-area-accordion-heading'>
+                            <div className='collapsed accordion-title-link' data-toggle="collapse" data-target="#state-area-accordion" aria-expanded="true" aria-controls="state-area-accordion">
+                              <span className='d-inline-block mr-2'><i className='fas fa-flask fa-sm' /></span>
+                              <span>State Wise - Labs</span>
+                              <div className='arrow-down'>
+                                <AccordionToggleIcon />
+                              </div>
                             </div>
                           </div>
-                        </div>
-                        <div id="state-area-accordion" className="collapse" aria-labelledby="area-wise-accordion-heading" data-parent="#covid-area-lab-accordion">
-                          <div className="card-body">
-                            <div className='c19-status-section'>
-                              <div className='row row-cols-1 row-cols-sm-3 no-gutters'>
-                                {_.map(labs.areaWise, (lab) => {
-                                  return (
-                                    <div className='col mb-4'>
-                                      <div className='c19-status-card c19-lab-card card h-100'>
-                                        <div className="card-body">
-                                          <a
-                                            href={lab.readmore}
-                                            target='_blank'
-                                            rel='noopener noreferrer'
-                                            className='mb-2'
-                                          >
-                                            {lab.title}
-                                          </a>
-                                          <div>{lab.address}</div>
-                                          <div>{lab.description}</div>
-                                          <div>{lab.city}</div>
+                          <div id="state-area-accordion" className="collapse" aria-labelledby="area-wise-accordion-heading" data-parent="#covid-area-lab-accordion">
+                            <div className="card-body">
+                              <div className='c19-status-section'>
+                                <div className='row row-cols-1 row-cols-sm-3 no-gutters'>
+                                  {_.map(labs.areaWise, (lab) => {
+                                    return (
+                                      <div className='col mb-4'>
+                                        <div className='c19-status-card c19-lab-card card h-100'>
+                                          <div className="card-body">
+                                            <a
+                                              href={lab.readmore}
+                                              target='_blank'
+                                              rel='noopener noreferrer'
+                                              className='mb-2'
+                                            >
+                                              {lab.title}
+                                            </a>
+                                            <div>{lab.address}</div>
+                                            <div>{lab.description}</div>
+                                            <div>{lab.city}</div>
+                                          </div>
                                         </div>
                                       </div>
-                                    </div>
-                                  );
-                                })}
+                                    );
+                                  })}
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                )}
-                {labs && !_.isEmpty(labs.stateWise) && (
-                  <div className='status-card-container my-3'>
-                    {this.renderLabTitle('Covid Statewise Lab')}
-                    <div className="accordion" id="covid-state-lab-accordion">
-                      <div className="card accordion-category-header" id="state-wise-accordion-heading">
-                        <div className="card-header" id='state-wise-accordion-heading'>
-                          <div className='collapsed accordion-title-link' data-toggle="collapse" data-target="#state-wise-accordion" aria-expanded="true" aria-controls="state-wise-accordion">
-                            <span>State Wise - Labs</span>
-                            <div className='arrow-down'>
-                              <AccordionToggleIcon />
+                  )}
+                  {labs && !_.isEmpty(labs.stateWise) && (
+                    <div className='status-card-container my-3'>
+                      {this.renderLabTitle('Covid Statewise Lab')}
+                      <div className="accordion" id="covid-state-lab-accordion">
+                        <div className="card accordion-category-header" id="state-wise-accordion-heading">
+                          <div className="card-header" id='state-wise-accordion-heading'>
+                            <div className='collapsed accordion-title-link' data-toggle="collapse" data-target="#state-wise-accordion" aria-expanded="true" aria-controls="state-wise-accordion">
+                              <span className='d-inline-block mr-2'><i className='fas fa-flask fa-sm' /></span>
+                              <span>State Wise - Labs</span>
+                              <div className='arrow-down'>
+                                <AccordionToggleIcon />
+                              </div>
                             </div>
                           </div>
-                        </div>
-                        <div id="state-wise-accordion" className="collapse" aria-labelledby="state-wise-accordion-heading" data-parent="#covid-state-lab-accordion">
-                          <div className="card-body">
-                            <div className='c19-status-section'>
-                              <div className='row row-cols-1 row-cols-sm-3 no-gutters'>
-                                {_.map(labs.stateWise, (lab) => {
-                                  return (
-                                    <div className='col mb-4'>
-                                      <div className='c19-status-card c19-lab-card card h-100'>
-                                        <div className="card-body">
-                                          <a
-                                            href={`https://covid.icmr.org.in${lab.readmore}`}
-                                            target='_blank'
-                                            rel='noopener noreferrer'
-                                            className='mb-2'
-                                          >
-                                            {lab.title}
-                                          </a>
-                                          <div>{lab.address}</div>
-                                          <div>{lab.description}</div>
-                                          <div>{lab.city}</div>
+                          <div id="state-wise-accordion" className="collapse" aria-labelledby="state-wise-accordion-heading" data-parent="#covid-state-lab-accordion">
+                            <div className="card-body">
+                              <div className='c19-status-section'>
+                                <div className='row row-cols-1 row-cols-sm-3 no-gutters'>
+                                  {_.map(labs.stateWise, (lab) => {
+                                    return (
+                                      <div className='col mb-4'>
+                                        <div className='c19-status-card c19-lab-card card h-100'>
+                                          <div className="card-body">
+                                            <a
+                                              href={`https://covid.icmr.org.in${lab.readmore}`}
+                                              target='_blank'
+                                              rel='noopener noreferrer'
+                                              className='mb-2'
+                                            >
+                                              {lab.title}
+                                            </a>
+                                            <div>{lab.address}</div>
+                                            <div>{lab.description}</div>
+                                            <div>{lab.city}</div>
+                                          </div>
                                         </div>
                                       </div>
-                                    </div>
-                                  );
-                                })}
+                                    );
+                                  })}
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                )}
+                  )}
+                </div>
+                <Footer text="Disclaimer Text" />
               </React.Fragment>
             )
           }

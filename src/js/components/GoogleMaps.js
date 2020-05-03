@@ -52,7 +52,7 @@ class GoogleMaps extends Component {
   render() {
     const { searchQuery } = this.state;
     return (
-      <div className={`container ${this.state.showMap ? '' : 'd-none'}`}>
+      <div className={`d-none container ${this.state.showMap ? '' : 'd-none'}`}>
         <div className='row map-container mb-2'>
           <div id='map' className='col s12 google-map box-shadow' />
         </div>

@@ -28,6 +28,7 @@ const CategoryCards = (props) => {
       const header = (
         <div className="card-header" id={`headingOne-${idAttribute}`}>
           <div className={`${items.length === 0 ? '' : 'collapsed'} accordion-title-link`} data-toggle="collapse" data-target={`#collapseOne-${idAttribute}`} aria-expanded="true" aria-controls="collapseOne">
+            <span className='d-inline-block mr-2'><i className='fas fa-camera fa-sm' /></span>
             <span>{activityName}</span>
             <div className='arrow-down'>
               <AccordionToggleIcon />
@@ -38,7 +39,7 @@ const CategoryCards = (props) => {
       let allowedList = null;
       if (allowedActivities && allowedActivities.length > 1) {
         allowedList = (
-          <div className='c19-status-section'>
+          <div className='c19-status-section c19-allowed-list'>
             <CategoryStatusTitle status='allowed' title='Allowed' />
             <div className='row row-cols-1 row-cols-sm-3 no-gutters'>
               {
@@ -58,7 +59,7 @@ const CategoryCards = (props) => {
       let notAllowedList = null;
       if (notAllowedActivities && notAllowedActivities.length > 1) {
         notAllowedList = (
-          <div className='c19-status-section'>
+          <div className='c19-status-section c19-restricted-list'>
             <CategoryStatusTitle status='restricted' title='Restricted' />
             <div className='row row-cols-1 row-cols-sm-3 no-gutters'>
               {_.map(notAllowedActivities, (activity) => {

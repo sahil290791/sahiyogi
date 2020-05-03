@@ -10,7 +10,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background: #f1f3f5;
   color: #111;
-  margin-bottom: 60px;
 }
 
 .c19-valign-center {
@@ -94,7 +93,7 @@ p {
   color: #747474;
 }
 
-.micro-text {
+.c19-total-stats .micro-text {
   font-size: 12px;
 }
 
@@ -110,7 +109,18 @@ a {
 .c19-header {
   text-align: center;
   margin: 20px 0;
-  font-size: calc(10px + 2vmin);}
+  font-size: calc(10px + 2vmin);
+}
+
+i.fas {
+  color: #111;
+}
+
+.c19-footer {
+  border-top: 1px solid #dfdfdf;
+  margin-bottom: 40px;
+  margin-top: 40px;
+}
 
 .c-19-main-wrapper {
   max-width: 740px;
@@ -133,11 +143,9 @@ a {
 
 /* Total Stats Card */
 .c19-total-stats {
-  background: #fff;
-  padding: 14px;
+  padding: 0 0 14px 0;
   margin-bottom: 10px;
   border-radius: 4px;
-  border: 1px solid #eaeaea;
 
   .title {
     font-size: 18px;
