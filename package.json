@@ -2,8 +2,8 @@
   "name": "sahiyogi",
   "version": "1.0.0",
   "engines": {
-    "node": "12.*.*",
-    "yarn": "1.22.4"
+    "node": "12.x.x",
+    "yarn": "1.x.x"
   },
   "description": "",
   "main": "index.js",
