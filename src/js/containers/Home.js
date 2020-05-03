@@ -229,7 +229,7 @@ class Home extends Component {
         <div className="container c-19-main-wrapper">
           <div className="row">
             <div className="col s12">
-              <Header title="React App" description='Usefull application' />
+              <Header title="Sahiyogi" description='Find covid related information for all districts' />
               <SearchInput
                 placeholder="Enter your Pincode"
                 inputChangeHandler={this.updateSearchQuery}
