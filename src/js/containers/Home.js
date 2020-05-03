@@ -304,7 +304,7 @@ class Home extends Component {
             !_.isEmpty(errors) && (
                 <div className='row'>
                   <div className='col s12'>
-                    We could find data for this pincode. Do not worry we are continously
+                    We could not find data for this pincode. Do not worry we are continously
                      working on updating the website.
                   </div>
                 </div>
