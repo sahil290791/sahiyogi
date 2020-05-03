@@ -59,7 +59,7 @@ responsePayload
 {
   "data": [{
       "State": "Assam",
-      "Coronavirus Helpline Numbers": "6913347770"
+      "Coronavirus Helpline Numbers": ["6913347770"]
     },
     {
         "state": "Karnataka",
@@ -72,3 +72,8 @@ responsePayload
   ]
 }
 ```
+
+### Pending tasks
+- [ ] Fetch any news related to a Pincode
+- [ ] Add separate API's for zone level data
+- [ ] Add filter for are you commuting
