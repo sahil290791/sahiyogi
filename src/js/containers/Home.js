@@ -18,7 +18,7 @@ import {
   getStateHelplineDetails, getLabsForAState
 } from '../Api/index';
 
-import { getLabs } from '../helpers/LabsHelpers';
+import { getLabs } from '../helpers/LabHelpers';
 
 const DATE_FORMAT = 'DD/MM/YYYY';
 
