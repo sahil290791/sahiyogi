@@ -16,9 +16,24 @@
     }
   }
 
+  .c19-total-stats .title,
   .covid-lab-title,
   .c19-category-title h3 {
     font-size: 16px;
+  }
+
+  .helpline-text,
+  .c19-status-banner p,
+  .c19-total-stats p {
+    font-size: 14px;
+
+    &.count {
+      font-size: 20px;
+    }
+  }
+
+  .helpline-text.micro-text {
+    font-size: 12px;
   }
 }
 
