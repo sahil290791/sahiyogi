@@ -311,7 +311,7 @@ class Home extends Component {
                 </div>
             )
           }
-          {this.state.placeData && (
+          {!_.isEmpty(this.state.placeData) && (
             <div>{this.state.placeData.city}, {this.state.placeData.state}</div>
           )}
           <GoogleMaps searchQuery={searchQuery} location={location} />
