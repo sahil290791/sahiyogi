@@ -5,6 +5,7 @@ import _ from 'lodash';
 import Header from '../components/Header';
 import SearchInput from '../components/SearchInput';
 import CategorySearchInput from '../components/CategorySearchInput';
+import HelplineIcon from '../components/HelplineIcon';
 import CategoryCards from '../components/CategoryCards';
 import StatusCard from '../components/StatusCard';
 import {
@@ -270,13 +271,20 @@ class Home extends Component {
                         {this.renderCovidCases('Total Cases', zoneData.total_cases, 'orange')}
                         {this.renderCovidCases('Total Recovered', zoneData.total_recovered, 'green')}
                         {this.renderCovidCases('Total Deaths', zoneData.total_deaths, 'red')}
+                        <div className='col-12 helpline-text text-center'>
+                          <span>
+                            <HelplineIcon />
+                            Helpline Number:
+                          </span>
+                          {_.map(helplineData.covid_helpline_numbers, (number) => {
+                            return (
+                              <a href={`tel:${number}`}>
+                                {` ${number}`}
+                              </a>
+                            );
+                          })}
+                        </div>
                       </div>
-                    </div>
-                    <div className='col s12'>
-                      <div>Helpline Numbers</div>
-                      {_.map(helplineData.covid_helpline_numbers, (number) => {
-                        return <a href={`tel:${number}`}>{number}</a>
-                      })}
                     </div>
                   </div>
                 </div>
