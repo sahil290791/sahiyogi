@@ -33,10 +33,14 @@ class Home extends Component {
       zoneData: {},
     };
     this.map = null;
+    this.defaultLocation = { lat: 20.7492073, lng: 73.7042651 };
   }
 
   componentDidMount() {
-    this.india = new window.google.maps.LatLng(20.7492073, 73.7042651);
+    this.map = new window.google.maps.Map(document.getElementById('map'), {
+      center: this.defaultLocation,
+      zoom: 6
+    });
   }
 
   updateSearchQuery = (event) => {
@@ -148,19 +152,14 @@ class Home extends Component {
     }
   }
 
-  fetchDatafromMaps = (searchText = '', location) => {
-    const map = new window.google.maps.Map(document.getElementById('map'), {
-      zoom: 6,
-      center: this.india,
-    });
-
+  fetchDatafromMaps = (searchText = '', location = null) => {
     const request = {
-      location: location || this.india,
+      location: location ||
+        (!_.isEmpty(this.state.location) && this.state.location) || this.defaultLocation,
       radius: '500',
-      fields: ['address_component'],
       query: searchText
     };
-    const service = new window.google.maps.places.PlacesService(map);
+    const service = new window.google.maps.places.PlacesService(this.map);
     service.textSearch(request, this.callback);
   }
 
@@ -322,7 +321,7 @@ class Home extends Component {
               </span>
             </p>
           )}
-          <GoogleMaps searchQuery={searchQuery} location={location} />
+          <GoogleMaps searchQuery={searchQuery} location={location} map={this.map} />
           {
             _.isEmpty(errors) && !_.isEmpty(zoneData) && (
               <React.Fragment>

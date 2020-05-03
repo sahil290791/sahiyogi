@@ -6,12 +6,12 @@ class GoogleMaps extends Component {
     return {
       searchQuery: props.searchQuery,
       location: props.location,
+      map: props.map
     };
   }
 
   constructor(props) {
     super(props);
-    this.map = null;
     this.infoWindow = null;
     this.state = {
       // isWaiting: true,
@@ -25,7 +25,7 @@ class GoogleMaps extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.searchQuery !== this.state.searchQuery && this.state.searchQuery) {
+    if (prevProps.location.lat !== this.state.location.lat && this.state.location.lat) {
       this.updatePosition();
     }
   }
@@ -34,16 +34,16 @@ class GoogleMaps extends Component {
     const defaultLocation = this.state.location || { lat: 20.7492073, lng: 73.7042651 };
     this.infoWindow.setPosition(defaultLocation);
     this.infoWindow.setContent('Location found.');
-    this.infoWindow.open(this.map);
-    this.map.setCenter(defaultLocation);
+    this.infoWindow.open(this.state.map);
+    new window.google.maps.Map(document.getElementById('map'), {
+      center: defaultLocation,
+      zoom: 8
+    });
+    // this.map.setCenter(defaultLocation);
     // new google.maps.Marker({ position: { ...defaultLocation }, map: this.map });
   }
 
   initMap = () => {
-    this.map = new window.google.maps.Map(document.getElementById('map'), {
-      center: { lat: 20.7492073, lng: 73.7042651 },
-      zoom: 6
-    });
     this.infoWindow = new google.maps.InfoWindow;
   }
 
@@ -65,7 +65,8 @@ GoogleMaps.defaultProps = {
 
 GoogleMaps.propTypes = {
   searchQuery: PropTypes.string,
-  location: PropTypes
+  location: PropTypes.object,
+  map: PropTypes.object.isRequired
 };
 
 export default GoogleMaps;
