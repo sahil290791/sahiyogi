@@ -2,6 +2,7 @@
 import csv from 'csv-parser';
 import fs from 'fs';
 import path from 'path';
+import _ from 'lodash';
 
 const express = require('express');
 
@@ -11,7 +12,7 @@ app.set('trust proxy', true);
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'dist')));
 
-app.get('/get_category_data', async (req, res) => {
+app.get('/api/get_category_data', async (req, res) => {
   const results = [];
   await fs.createReadStream(path.resolve(__dirname, 'src', 'data', 'covid_activities.csv'))
     .pipe(csv())
@@ -21,6 +22,34 @@ app.get('/get_category_data', async (req, res) => {
     .on('end', () => {
       res.send({ data: results });
     });
+});
+
+app.get('/api/get_state_wise_helpline_data', async (req, res) => {
+  const results = [];
+  try {
+    await fs.createReadStream(path.resolve(__dirname, 'src', 'data', 'covid_mapping_helplines.csv'))
+      .pipe(csv())
+      .on('data', (data) => {
+        results.push(data);
+      })
+      .on('end', () => {
+        if (req.query && req.query.state != null) {
+          const stateData = _.find(results, (result) => {
+            return result.State.toLowerCase() === req.query.state.toLowerCase();
+          });
+          if (stateData) {
+            res.send({ data: stateData });
+          } else {
+            res.status(404).send({ message: 'State helpline data not present' });
+          }
+        } else {
+          res.send({ data: results });
+        }
+      });
+  } catch (e) {
+    console.log(e);
+    res.status(400).send({ message: 'Bad Request' });
+  }
 });
 
 // Put all API endpoints under '/api'
