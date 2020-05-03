@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 import SearchInputLoaderIcon from './SearchInputLoaderIcon';
 import SearchInputIcon from './SearchInputIcon';
 
-function allowOnlyDigits(e) {
-  const re = /[0-9]+/g;
-  if (!re.test(e.key)) {
-    e.preventDefault();
-  }
-}
+// function allowOnlyDigits(e) {
+//   const re = /[0-9]+/g;
+//   if (!re.test(e.key)) {
+//     e.preventDefault();
+//   }
+// }
 
 const SearchInput = (props) => {
   const {
@@ -22,14 +22,10 @@ const SearchInput = (props) => {
       <input
         className="c19-search-input c19-searchinput-js"
         type='text'
-        pattern="[0-9]*"
-        onKeyPress={allowOnlyDigits}
         value={value}
         placeholder={placeholder}
         onChange={inputChangeHandler}
         disabled={disabled}
-        maxLength='6'
-        inputMode='numeric'
       />
       <button type='button' className="c19-search-input-icon">
         {icon}

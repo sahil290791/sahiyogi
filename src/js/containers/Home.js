@@ -59,14 +59,14 @@ class Home extends Component {
 
   updateSearchQuery = (event) => {
     const searchText = event.target.value || '';
-    if (searchText.length > 6) {
-      return;
-    }
+    // if (searchText.length > 6) {
+    // return;
+    // }
     this.setState({
       searchQuery: searchText,
       ...this.resetData()
     });
-    if (searchText.length === 6) {
+    if (searchText.length > 3) {
       this.initiateSearch(searchText);
     }
   }
@@ -159,9 +159,8 @@ class Home extends Component {
             lat: place.geometry.location.lat(),
             lng: place.geometry.location.lng()
           },
-          // placeData: this.getCity(place)
-        });
-        // , () => this.getZoneColorData()
+          placeData: this.getCity(place)
+        }, () => this.getZoneColorData());
         break;
       }
     }
@@ -227,7 +226,8 @@ class Home extends Component {
     // google endpoint
     this.setState({ isQuerying: true });
     if (!location) {
-      this.searchCityViaPincode(searchText);
+      // this.searchCityViaPincode(searchText);
+      this.fetchDatafromMaps(searchText);
     } else if (viaFourSq) {
       getDataFromLatLang(location.lat, location.lng, {
         cb: this.handleFourSquareData,

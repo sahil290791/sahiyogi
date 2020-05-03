@@ -44,12 +44,12 @@
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
           });
         });
-        $(".c19-searchinput-js").on("keypress keyup blur",function (event) {
-          $(this).val($(this).val().replace(/[^\d].+/, ""));
-            if ((event.which < 48 || event.which > 57)) {
-              event.preventDefault();
-          }
-        });
+        // $(".c19-searchinput-js").on("keypress keyup blur",function (event) {
+          // $(this).val($(this).val().replace(/[^\d].+/, ""));
+          //   if ((event.which < 48 || event.which > 57)) {
+          //     event.preventDefault();
+          // }
+        // });
       });
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjt7-Mdz_jiSsXUT4-Teffc9fS3SrmVDA&libraries=places"></script>
