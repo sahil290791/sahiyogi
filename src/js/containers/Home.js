@@ -6,6 +6,7 @@ import Header from '../components/Header';
 import SearchInput from '../components/SearchInput';
 import CategorySearchInput from '../components/CategorySearchInput';
 import HelplineIcon from '../components/HelplineIcon';
+import GoogleMaps from '../components/GoogleMaps';
 import CategoryCards from '../components/CategoryCards';
 import StatusCard from '../components/StatusCard';
 import {
