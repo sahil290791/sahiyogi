@@ -168,7 +168,6 @@ class Home extends Component {
 
   handleLabsData = (res) => {
     const { searchQuery, placeData } = this.state;
-    console.log(res.body.data.labs);
     this.setState({
       isQuerying: false,
       labs: {

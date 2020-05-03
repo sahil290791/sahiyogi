@@ -1,4 +1,13 @@
-import { filter } from 'lodash';
+import { chain } from 'lodash';
+
+const REGEX = /(<([^>]+)>)/ig;
+
+const stripHTML = (value) => {
+  if (value) {
+    return value.replace(REGEX, '');
+  }
+  return value;
+};
 
 export const getLabs = (identifier, value, labs) => {
   /*
@@ -22,8 +31,22 @@ export const getLabs = (identifier, value, labs) => {
     zip: "462026"
     },
   */
-  const labData = filter(labs, (lab) => {
-    return lab[identifier] && lab[identifier].toLowerCase() === value.toLowerCase();
-  });
+
+  const labData = chain(labs)
+    .filter((lab) => {
+      return lab[identifier] && lab[identifier].toLowerCase() === value.toLowerCase();
+    })
+    .map((lab) => {
+      return {
+        ...lab,
+        address: stripHTML(lab['address']),
+        cutDescription: stripHTML(lab['cutDescription']),
+        description: stripHTML(lab['description'])
+      };
+    })
+    .value();
+  // filter(labs, (lab) => {
+  //   return lab[identifier] && lab[identifier].toLowerCase() === value.toLowerCase();
+  // });
   return labData || {};
 };
