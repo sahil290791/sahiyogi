@@ -20,6 +20,15 @@ const getCityFromPinCode = (pincode, options) => {
   });
 };
 
+const getLabsForAState = (state, options) => {
+  makeGetRequest({
+    url: `http://lockdown-api.scripbox.io/api/v1/labs`,
+    withCredentials: false,
+    showAllowOrigin: false,
+    ...options
+  });
+};
+
 const getZoneColor = (placeData, options) => {
   makeGetRequest({
     url: `http://lockdown-api.scripbox.io/api/v1/zone?district_name=${placeData.city}&state_name=${placeData.state}`,
@@ -53,6 +62,7 @@ export {
   getZoneColor,
   getCityFromPinCode,
   getStateHelplineDetails,
+  getLabsForAState
 };
 
 // https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=711202&inputtype=textquery&fields=formatted_address,id,name,opening_hours,geometry&key=AIzaSyCjt7-Mdz_jiSsXUT4-Teffc9fS3SrmVDA

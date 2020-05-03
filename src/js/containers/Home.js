@@ -12,8 +12,10 @@ import CategoryCards from '../components/CategoryCards';
 import StatusCard from '../components/StatusCard';
 import {
   getActivityData, getDataFromLatLang, getZoneColor, getCityFromPinCode,
-  getStateHelplineDetails
+  getStateHelplineDetails, getLabsForAState
 } from '../Api/index';
+
+import { getLabs } from '../helpers/labsHelpers';
 
 const DATE_FORMAT = 'DD/MM/YYYY';
 
@@ -31,6 +33,7 @@ class Home extends Component {
       placeData: {},
       helplineData: {},
       zoneData: {},
+      labs: {},
     };
     this.map = null;
     this.defaultLocation = { lat: 20.7492073, lng: 73.7042651 };
@@ -51,6 +54,7 @@ class Home extends Component {
     this.setState({
       searchQuery: searchText,
       errors: null,
+      labs: {},
       zoneData: {},
       isQuerying: false,
       activities: [],
@@ -91,6 +95,7 @@ class Home extends Component {
   }
 
   handleZoneData = (res) => {
+    // 3rd network call post handling res
     this.setState({
       zoneData: res.body.data,
       errors: null,
@@ -111,18 +116,20 @@ class Home extends Component {
   }
 
   fetchStateWiseHelplineData = () => {
+    // 4th network call
     getStateHelplineDetails(
       this.state.placeData.state,
       {
         cb: (res) => this.setState({
           helplineData: res.body.data,
           isQuerying: false,
-        })
+        }, this.fetchLabsDataForState)
       }
     );
   }
 
   getZoneColorData = () => {
+    // 2nd network call
     const { placeData, errors } = this.state;
     getZoneColor(placeData, {
       cb: this.handleZoneData,
@@ -153,6 +160,32 @@ class Home extends Component {
         break;
       }
     }
+  }
+
+  handleLabsData = (res) => {
+    const { searchQuery, placeData } = this.state;
+    console.log(res.body.data.labs);
+    this.setState({
+      isQuerying: false,
+      labs: {
+        areaWise: getLabs('zip', searchQuery, res.body.data.labs),
+        stateWise: getLabs('state', placeData.state, res.body.data.labs),
+        cityWise: getLabs('city', placeData.city, res.body.data.labs),
+      }
+    });
+  }
+
+  fetchLabsDataForState = () => {
+    // network call
+    getLabsForAState(this.state.placeData.state, {
+      cb: this.handleLabsData,
+      onError: (err) => {
+        this.setState({
+          errors: err,
+          isQuerying: false,
+        });
+      }
+    });
   }
 
   fetchDatafromMaps = (searchText = '', location = null) => {
@@ -205,6 +238,7 @@ class Home extends Component {
   }
 
   searchCityViaPincode = (searchText) => {
+    // 1st network call
     if (searchText) {
       getCityFromPinCode(searchText, {
         cb: (res) => {
@@ -231,37 +265,6 @@ class Home extends Component {
     }
   }
 
-  initiateCitySearch(location) {
-    this.setState({ isQuerying: true });
-    getDataFromLatLang(location.lat, location.lng, {
-      cb: (data) => {
-        const { venues } = data.response;
-        // City might not be present first element
-        const venue = venues.find((v) => v.location.city);
-        if (venue) {
-          const { city } = venue.location;
-          this.setState({
-            isQuerying: false,
-            city,
-          });
-        } else {
-          this.setState({
-            isQuerying: false,
-            city: null,
-            error: 'Location not found'
-          });
-        }
-      },
-      onError: () => {
-        this.setState({
-          isQuerying: false,
-          city: null,
-          error: 'Location not found'
-        });
-      }
-    });
-  }
-
   renderCovidCases = (label, value, color) => {
     return (
       <div className='col-12 col-sm-4 text-center'>
@@ -278,7 +281,7 @@ class Home extends Component {
   render() {
     const {
       searchQuery, isQuerying, activities, helplineData, zoneData, errors, location,
-      showAskForLocation
+      showAskForLocation, labs
     } = this.state;
     return (
       <div className="App">
@@ -331,13 +334,45 @@ class Home extends Component {
             </p>
           )}
           <GoogleMaps searchQuery={searchQuery} location={location} map={this.map} />
+          {labs && !_.isEmpty(labs.areaWise) &&
+            _.map(labs.areaWise, (lab) => {
+              return (
+                <div className='row'>
+                  <div>Area wise labs</div>
+                  <div className='col s12'>
+                    <a href={lab.readmore} target="_blank">{lab.title}</a>
+                    {lab.address}
+                    {lab.description}
+                    {lab.city}
+                  </div>
+                </div>
+              );
+            })
+          }
+          {labs && !_.isEmpty(labs.stateWise) && (
+            _.map(labs.stateWise, (lab) => {
+              return (
+                <div className='row'>
+                  <div>State wise labs</div>
+                  <div className='col s12'>
+                    <a href={lab.readmore} target="_blank">{lab.title}</a>
+                    {lab.address}
+                    {lab.description}
+                    {lab.city}
+                  </div>
+                </div>
+              );
+            })
+          )}
           {
             _.isEmpty(errors) && !_.isEmpty(zoneData) && (
               <React.Fragment>
                 <div className='row'>
                   <div className='col-12'>
                     <p className='text-center helpline-text micro-text'>
-                      This data was Last updated on: {moment(zoneData.last_updated_at, DATE_FORMAT).format('Do MMM, YYYY')}
+                      This data was Last updated on: {
+                        moment(zoneData.last_updated_at, DATE_FORMAT).format('Do MMM, YYYY')
+                      }
                     </p>
                     <StatusCard city={this.state.placeData.city} status={(zoneData && zoneData.zone) || 'red'} />
                     <div className='c19-total-stats'>
