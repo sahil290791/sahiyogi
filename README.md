@@ -74,6 +74,9 @@ responsePayload
 ```
 
 ### Pending tasks
+- [ ] Title: `Lockdown essentials`
+- [ ] Desc: `Find out what's allowed and restricted in your area during the COVID-19 lockdown`
 - [ ] Fetch any news related to a Pincode
 - [ ] Add separate API's for zone level data
 - [ ] Add filter for are you commuting
+- [ ] If the pincode lies in tamil nadu add link for travel pass https://rttn.nonresidenttamil.org/
