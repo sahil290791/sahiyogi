@@ -47,8 +47,8 @@ responsePayload
 ```json
 {
   "data": {
-    "State": "Assam",
-    "Coronavirus Helpline Numbers": "6913347770"
+    "state": "Assam",
+    "covid_helpline_numbers": ["6913347770"]
   }
 }
 ```
@@ -62,8 +62,12 @@ responsePayload
       "Coronavirus Helpline Numbers": "6913347770"
     },
     {
-        "State": "Karnataka",
-        "Coronavirus Helpline Numbers": "6913347770"
+        "state": "Karnataka",
+        "covid_helpline_numbers": [
+          "104",
+          "080-4684 8600",
+          "080-6669 2000"
+          ]
     }
   ]
 }

@@ -4,6 +4,8 @@ import { makeGetRequest } from './api';
 const FOURSQUARE_CLIENT_SECRET = 'HRDKFPHCHB3VXRKAKZEI0UJBDTKTGPJKJ1VKG3VR11MSI2OI';
 const FOURSQUARE_CLIENT_ID = 'G32Z1SB20LPG1UJRLBQV1PKXKTAQV0WIJS50A2F3BD4CKVHN';
 
+const API_URL = process.env.NODE_ENV === 'production' ? '/api' : 'http://localhost:5000';
+
 const getDataFromLatLang = (lat, lang, options) => {
   makeGetRequest({
     url: `https://api.foursquare.com/v2/venues/search?ll=${lat},${lang}&client_secret=${FOURSQUARE_CLIENT_SECRET}&client_id=${FOURSQUARE_CLIENT_ID}&v=20160623`,
@@ -37,11 +39,21 @@ const getActivityData = (zone, options) => {
   });
 };
 
+const getStateHelplineDetails = (state, options) => {
+  makeGetRequest({
+    url: `${API_URL}/get_state_wise_helpline_data?state=${state}`,
+    withCredentials: false,
+    showAllowOrigin: false,
+    ...options,
+  });
+};
+
 export {
   getDataFromLatLang,
   getActivityData,
   getZoneColor,
   getCityFromPinCode,
+  getStateHelplineDetails,
 };
 
 // https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=711202&inputtype=textquery&fields=formatted_address,id,name,opening_hours,geometry&key=AIzaSyCjt7-Mdz_jiSsXUT4-Teffc9fS3SrmVDA

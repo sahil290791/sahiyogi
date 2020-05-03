@@ -7,7 +7,8 @@ import GoogleMaps from '../components/GoogleMaps';
 import CategoryCards from '../components/CategoryCards';
 import StatusCard from '../components/StatusCard';
 import {
-  getActivityData, getDataFromLatLang, getZoneColor, getCityFromPinCode
+  getActivityData, getDataFromLatLang, getZoneColor, getCityFromPinCode,
+  getStateHelplineDetails
 } from '../Api/index';
 
 class Home extends Component {
@@ -19,7 +20,9 @@ class Home extends Component {
       location: {},
       error: null,
       activities: [],
-      placeData: {}
+      placeData: {},
+      helplineData: {},
+      zoneData: {},
     };
     this.map = null;
   }
@@ -69,20 +72,34 @@ class Home extends Component {
   }
 
   handleZoneData = (res) => {
-    console.log('res', res);
-    getActivityData(res.body.data.zone, {
-      cb: this.handleActivities,
-      onError: (data) => this.setState({
-        isQuerying: false,
-        error: data,
+    this.setState({
+      zoneData: res.body.data,
+    }, () => getActivityData(res.body.data.zone, {
+        cb: this.handleActivities,
+        onError: (data) => this.setState({
+          isQuerying: false,
+          error: data,
+        })
       })
-    });
+    );
   }
 
   handleActivities = (data) => {
     this.setState({
       activities: data.body.data.activities,
-    });
+    }, );
+  }
+
+  fetchStateWiseHelplineData = () => {
+    getStateHelplineDetails(
+      this.state.placeData.state,
+      {
+        cb: (res) => this.setState({
+          helplineData: res.data,
+          isQuerying: false,
+        })
+      }
+    );
   }
 
   getZoneColorData = () => {
@@ -138,7 +155,7 @@ class Home extends Component {
           const data = res.body.data[0];
           this.setState({
             placeData: {
-              city: data.district === 'Bangalore' ? 'Bengaluru' : data.district,
+              city: data.district === 'Bengaluru' ? 'Bangalore' : data.district,
               state: data.state_name,
             }
           }, () => this.getZoneColorData());
@@ -182,7 +199,7 @@ class Home extends Component {
   }
 
   render() {
-    const { searchQuery, isQuerying } = this.state;
+    const { searchQuery, isQuerying, activities, helplineData, zoneData } = this.state;
     return (
       <div className="App">
         <div className="container c-19-main-wrapper">
@@ -207,7 +224,7 @@ class Home extends Component {
           </div>
           <div className='row'>
             <div className='col s12'>
-              <StatusCard city={this.state.placeData.city} status='red' />
+              <StatusCard city={this.state.placeData.city} status={(zoneData && zoneData.zone) || 'red'} />
               <GoogleMaps
                 searchQuery={searchQuery}
               />
@@ -220,7 +237,17 @@ class Home extends Component {
                   placeholder='Search by category'
                 />
               </div>
-              <CategoryCards activities={this.state.activities} />
+              <CategoryCards activities={activities} />
+            </div>
+          </div>
+          <div className='row'>
+            <div className='col s12'>
+              <div>Help Line</div>
+              {_.map(helplineData, (data) => {
+                return _.map(data.covid_helpline_numbers, (number) => {
+                  return <a href={`tel:${number}`}>{number}</a>
+                });
+              })}
             </div>
           </div>
         </div>

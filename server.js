@@ -30,12 +30,15 @@ app.get('/api/get_state_wise_helpline_data', async (req, res) => {
     await fs.createReadStream(path.resolve(__dirname, 'src', 'data', 'covid_mapping_helplines.csv'))
       .pipe(csv())
       .on('data', (data) => {
-        results.push(data);
+        results.push({
+          state: data.State,
+          covid_helpline_numbers: data['Coronavirus Helpline Numbers'].split(/\n/)
+        });
       })
       .on('end', () => {
         if (req.query && req.query.state != null) {
           const stateData = _.find(results, (result) => {
-            return result.State.toLowerCase() === req.query.state.toLowerCase();
+            return result.state.toLowerCase() === req.query.state.toLowerCase();
           });
           if (stateData) {
             res.send({ data: stateData });
