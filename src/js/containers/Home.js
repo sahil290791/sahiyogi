@@ -390,6 +390,11 @@ class Home extends Component {
                             );
                           })}
                         </div>
+                        <div className='col-12 helpline-text text-center my-2'>
+                          <a href="#state-wise-accordion-heading" className='micro-text'>
+                            Looking for COVID 19 testing centres near you?
+                          </a>
+                        </div>
                       </div>
                     </div>
                   </div>
