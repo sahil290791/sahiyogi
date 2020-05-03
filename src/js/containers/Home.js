@@ -301,34 +301,36 @@ class Home extends Component {
       showAskForLocation, labs, placeData
     } = this.state;
     return (
-      <div className="App">
+      <div className="App c19-valign-center">
         <div className="container c-19-main-wrapper">
-          <div className="row">
-            <div className="col-12">
-              <div className='header-container'>
-                <Header
-                  title="Lockdown Handbook"
-                  description="Find out what's allowed and restricted in your area during the COVID-19 lockdown."
-                />
-              </div>
-              <SearchInput
-                placeholder="Enter your Pincode"
-                inputChangeHandler={this.updateSearchQuery}
-                value={searchQuery}
-                isLoading={isQuerying}
-              />
-              {showAskForLocation && (
-                <div>
-                  <p className="text-center c19-info-text">
-                    or
-                  </p>
-                  <div className="text-center">
-                    <a className='text-link' onClick={this.geolocate}>
-                      Use device location
-                    </a>
-                  </div>
+          <div className='animated fadeInDown'>
+            <div className="row">
+              <div className="col-12">
+                <div className='header-container'>
+                  <Header
+                    title="Lockdown Handbook"
+                    description="Find out what's allowed and restricted in your area during the COVID-19 lockdown."
+                  />
                 </div>
-              )}
+                <SearchInput
+                  placeholder="Enter your Pincode"
+                  inputChangeHandler={this.updateSearchQuery}
+                  value={searchQuery}
+                  isLoading={isQuerying}
+                />
+                {showAskForLocation && (
+                  <div>
+                    <p className="text-center c19-info-text">
+                      or
+                    </p>
+                    <div className="text-center">
+                      <a className='text-link' onClick={this.geolocate}>
+                        Use device location
+                      </a>
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
           {
