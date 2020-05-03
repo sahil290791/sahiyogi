@@ -310,6 +310,9 @@ class Home extends Component {
                 </div>
             )
           }
+          {this.state.placeData && (
+            <div>{this.state.placeData.city}, {this.state.placeData.state}</div>
+          )}
           <GoogleMaps searchQuery={searchQuery} location={location} />
           {
             _.isEmpty(errors) && !_.isEmpty(zoneData) && (
