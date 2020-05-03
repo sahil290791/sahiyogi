@@ -75,19 +75,18 @@ class Home extends Component {
     this.setState({
       zoneData: res.body.data,
     }, () => getActivityData(res.body.data.zone, {
-        cb: this.handleActivities,
-        onError: (data) => this.setState({
-          isQuerying: false,
-          error: data,
-        })
+      cb: this.handleActivities,
+      onError: (data) => this.setState({
+        isQuerying: false,
+        error: data,
       })
-    );
+    }));
   }
 
   handleActivities = (data) => {
     this.setState({
       activities: data.body.data.activities,
-    }, );
+    }, this.fetchStateWiseHelplineData);
   }
 
   fetchStateWiseHelplineData = () => {
@@ -95,7 +94,7 @@ class Home extends Component {
       this.state.placeData.state,
       {
         cb: (res) => this.setState({
-          helplineData: res.data,
+          helplineData: res.body.data,
           isQuerying: false,
         })
       }
@@ -225,9 +224,19 @@ class Home extends Component {
           <div className='row'>
             <div className='col s12'>
               <StatusCard city={this.state.placeData.city} status={(zoneData && zoneData.zone) || 'red'} />
-              <GoogleMaps
-                searchQuery={searchQuery}
-              />
+                <div className='col s12'>
+                  <div>CoVID cases</div>
+                  {}
+                  {_.map(helplineData.covid_helpline_numbers, (number) => {
+                    return <a href={`tel:${number}`}>{number}</a>
+                  })}
+                </div>
+              <div className='col s12'>
+                <div>Helpline Numbers</div>
+                {_.map(helplineData.covid_helpline_numbers, (number) => {
+                  return <a href={`tel:${number}`}>{number}</a>
+                })}
+              </div>
             </div>
           </div>
           <div className='row no-gutters status-card-container'>
@@ -238,16 +247,6 @@ class Home extends Component {
                 />
               </div>
               <CategoryCards activities={activities} />
-            </div>
-          </div>
-          <div className='row'>
-            <div className='col s12'>
-              <div>Help Line</div>
-              {_.map(helplineData, (data) => {
-                return _.map(data.covid_helpline_numbers, (number) => {
-                  return <a href={`tel:${number}`}>{number}</a>
-                });
-              })}
             </div>
           </div>
         </div>
