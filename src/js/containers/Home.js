@@ -5,6 +5,7 @@ import _ from 'lodash';
 import Header from '../components/Header';
 import SearchInput from '../components/SearchInput';
 import CategorySearchInput from '../components/CategorySearchInput';
+import LocationIcon from '../components/LocationIcon';
 import HelplineIcon from '../components/HelplineIcon';
 import GoogleMaps from '../components/GoogleMaps';
 import CategoryCards from '../components/CategoryCards';
@@ -289,14 +290,16 @@ class Home extends Component {
                 value={searchQuery}
                 isLoading={isQuerying}
               />
-              <p className="text-center c19-info-text">
-                or
-              </p>
               {showAskForLocation && (
-                <div className="text-center">
-                  <a className='text-link' onClick={this.geolocate}>
-                    Use device location
-                  </a>
+                <div>
+                  <p className="text-center c19-info-text">
+                    or
+                  </p>
+                  <div className="text-center">
+                    <a className='text-link' onClick={this.geolocate}>
+                      Use device location
+                    </a>
+                  </div>
                 </div>
               )}
             </div>
@@ -312,17 +315,22 @@ class Home extends Component {
             )
           }
           {!_.isEmpty(this.state.placeData) && (
-            <div>{this.state.placeData.city}, {this.state.placeData.state}</div>
+            <p className='text-center helpline-text text-capitalize'>
+              <LocationIcon />
+              <span className='align-middle'>
+                {this.state.placeData.city}, {this.state.placeData.state.toLowerCase()}
+              </span>
+            </p>
           )}
           <GoogleMaps searchQuery={searchQuery} location={location} />
           {
             _.isEmpty(errors) && !_.isEmpty(zoneData) && (
               <React.Fragment>
                 <div className='row'>
-                  <div className='col s12'>
-                    <div className='col s12'>
+                  <div className='col-12'>
+                    <p className='text-center helpline-text micro-text'>
                       This data was Last updated on: {moment(zoneData.last_updated_at, DATE_FORMAT).format('Do MMM, YYYY')}
-                    </div>
+                    </p>
                     <StatusCard city={this.state.placeData.city} status={(zoneData && zoneData.zone) || 'red'} />
                     <div className='c19-total-stats'>
                       <div className='text-center title mb-2'>COVID-19 Cases</div>
@@ -333,13 +341,13 @@ class Home extends Component {
                         <div className='col-12 helpline-text text-center'>
                           <span>
                             <HelplineIcon />
-                            Helpline Number:
+                            <span className='align-middle'>Helpline Number: </span>
                           </span>
                           {_.map(helplineData.covid_helpline_numbers, (number, index) => {
                             return (
                               <span>
                                 <a href={`tel:${number}`}>
-                                  {` ${number}`}
+                                  {number}
                                 </a>
                                 {(index !== helplineData.covid_helpline_numbers.length - 1) ? `${' / '}` : ''}
                               </span>
