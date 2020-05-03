@@ -41,8 +41,11 @@ class Home extends Component {
     const searchText = event.target.value || '';
     this.setState({
       searchQuery: searchText,
-      error: null,
+      errors: null,
+      zoneData: {},
+      isQuerying: false,
       activities: [],
+      helplineData: {},
       placeData: {},
     });
     if (searchText.length === 6) {
@@ -81,11 +84,12 @@ class Home extends Component {
   handleZoneData = (res) => {
     this.setState({
       zoneData: res.body.data,
+      errors: null,
     }, () => getActivityData(res.body.data.zone, {
       cb: this.handleActivities,
       onError: (data) => this.setState({
         isQuerying: false,
-        error: data,
+        errors: data,
       })
     }));
   }
@@ -93,6 +97,7 @@ class Home extends Component {
   handleActivities = (data) => {
     this.setState({
       activities: data.body.data.activities,
+      errors: null,
     }, this.fetchStateWiseHelplineData);
   }
 
@@ -126,11 +131,16 @@ class Home extends Component {
     if (status === window.google.maps.places.PlacesServiceStatus.OK) {
       for (let i = 0; i < results.length; i++) {
         const place = results[i];
-        console.log(place);
         this.setState({
           isQuerying: true,
-          placeData: this.getCity(place)
-        }, () => this.getZoneColorData());
+          errors: null,
+          location: {
+            lat: place.geometry.location.lat(),
+            lng: place.geometry.location.lng()
+          },
+          // placeData: this.getCity(place)
+        });
+        // , () => this.getZoneColorData()
         break;
       }
     }
@@ -160,6 +170,7 @@ class Home extends Component {
     console.log('fs:', res.body.data);
     this.setState({
       searchQuery: venue.location.postalCode,
+      errors: null,
       location: {
         lat: venue.location.lat,
         lng: venue.location.lng
@@ -184,6 +195,8 @@ class Home extends Component {
           });
         }
       });
+    } else {
+      this.fetchDatafromMaps(searchText);
     }
   }
 
@@ -194,11 +207,14 @@ class Home extends Component {
           const data = res.body.data[0];
           this.setState({
             placeData: {
-              city: data.district === 'Bengaluru' ? 'Bangalore' : data.district,
+              city: data.district === 'Bangalore' ? 'Bengaluru' : data.district,
               state: data.state_name,
               errors: null,
             }
-          }, () => this.getZoneColorData());
+          }, () => {
+            this.fetchDatafromMaps(searchText, null, false);
+            this.getZoneColorData();
+          });
         },
         onError: (err) => {
           this.setState({

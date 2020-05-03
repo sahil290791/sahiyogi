@@ -30,14 +30,15 @@ class GoogleMaps extends Component {
   }
 
   updatePosition = () => {
-    const defaultLocation = this.state.location || { lat: -34, lng: 151 };
-    this.map.setCenter(defaultLocation);
-    new google.maps.Marker({ position: defaultLocation, map: this.map });
+    const defaultLocation = this.state.location || { lat: 20.7492073, lng: 73.7042651 };
+    const myLatlng = new google.maps.LatLng(defaultLocation.lat, defaultLocation.lng);
+    this.map.setCenter(myLatlng);
+    new google.maps.Marker({ position: myLatlng, map: this.map });
   }
 
   initMap = () => {
     this.map = new window.google.maps.Map(document.getElementById('map'), {
-      center: { lat: -34.397, lng: 150.644 },
+      center: { lat: 20.7492073, lng: 73.7042651 },
       zoom: 8
     });
   }
@@ -55,7 +56,7 @@ class GoogleMaps extends Component {
 
 GoogleMaps.defaultProps = {
   searchQuery: null,
-  location: { lat: -34, lng: 151 },
+  location: { lat: 20.7492073, lng: 73.7042651 },
 };
 
 GoogleMaps.propTypes = {

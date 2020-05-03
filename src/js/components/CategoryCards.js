@@ -45,7 +45,7 @@ const CategoryCards = (props) => {
                 _.map(allowedActivities, (activity) => {
                   return (
                     <div className='col mb-4'>
-                      <StatusTile status='allowed' title={activity.activity_sub_category} description={activity.details} />
+                      <StatusTile status='allowed' title={activity.activity_sub_category} description={activity.detail} />
                     </div>
                   );
                 })
@@ -64,7 +64,7 @@ const CategoryCards = (props) => {
               {_.map(notAllowedActivities, (activity) => {
                 return (
                   <div className='col mb-4'>
-                    <StatusTile status='allowed' title={activity.activity_sub_category} description={activity.details} />
+                    <StatusTile status='allowed' title={activity.activity_sub_category} description={activity.detail} />
                   </div>
                 );
               })
