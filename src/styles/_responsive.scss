@@ -8,7 +8,18 @@
     font-size: 28px;
     font-weight: 700;
   }
+  .status-card-container {
+    .accordion>.card>.card-header {
+      .accordion-title-link {
+        font-size: 16px;
+      }
+    }
+  }
 
+  .covid-lab-title,
+  .c19-category-title h3 {
+    font-size: 16px;
+  }
 }
 
 @media only screen and (min-width: 577px) {
