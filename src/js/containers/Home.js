@@ -5,7 +5,6 @@ import _ from 'lodash';
 import Header from '../components/Header';
 import SearchInput from '../components/SearchInput';
 import CategorySearchInput from '../components/CategorySearchInput';
-import LocationIcon from '../components/LocationIcon';
 import HelplineIcon from '../components/HelplineIcon';
 import AccordionToggleIcon from '../components/AccordionToggleIcon';
 import GoogleMaps from '../components/GoogleMaps';
@@ -344,14 +343,6 @@ class Home extends Component {
               </div>
             )
           }
-          {!_.isEmpty(placeData) && (
-            <p className='text-center text-capitalize'>
-              <LocationIcon />
-              <span className='align-middle'>
-                {placeData.city}, {placeData.state.toLowerCase()}
-              </span>
-            </p>
-          )}
           <GoogleMaps
             searchQuery={searchQuery}
             location={location}
