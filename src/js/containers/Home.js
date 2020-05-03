@@ -335,11 +335,14 @@ class Home extends Component {
                             <HelplineIcon />
                             Helpline Number:
                           </span>
-                          {_.map(helplineData.covid_helpline_numbers, (number) => {
+                          {_.map(helplineData.covid_helpline_numbers, (number, index) => {
                             return (
-                              <a href={`tel:${number}`}>
-                                {` ${number}`}
-                              </a>
+                              <span>
+                                <a href={`tel:${number}`}>
+                                  {` ${number}`}
+                                </a>
+                                {(index !== helplineData.covid_helpline_numbers.length - 1) ? `${' / '}` : ''}
+                              </span>
                             );
                           })}
                         </div>
