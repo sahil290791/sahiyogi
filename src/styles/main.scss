@@ -162,4 +162,9 @@ a {
   }
 }
 
+button {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
 @import 'responsive';
