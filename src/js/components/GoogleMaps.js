@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 class GoogleMaps extends Component {
   static getDerivedStateFromProps(props, state) {
     return {
-      searchQuery: props.searchQuery
+      searchQuery: props.searchQuery,
+      location: props.location,
     };
   }
 
@@ -29,8 +30,9 @@ class GoogleMaps extends Component {
   }
 
   updatePosition = () => {
-    this.map.setCenter({ lat: -34, lng: 151 });
-    new google.maps.Marker({ position: { lat: -34, lng: 151 }, map: this.map });
+    const defaultLocation = this.state.location || { lat: -34, lng: 151 };
+    this.map.setCenter(defaultLocation);
+    new google.maps.Marker({ position: defaultLocation, map: this.map });
   }
 
   initMap = () => {
@@ -53,10 +55,12 @@ class GoogleMaps extends Component {
 
 GoogleMaps.defaultProps = {
   searchQuery: null,
+  location: { lat: -34, lng: 151 },
 };
 
 GoogleMaps.propTypes = {
   searchQuery: PropTypes.string,
+  location: PropTypes
 };
 
 export default GoogleMaps;

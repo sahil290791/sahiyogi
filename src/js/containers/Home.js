@@ -18,11 +18,13 @@ const DATE_FORMAT = 'DD/MM/YYYY';
 class Home extends Component {
   constructor(props) {
     super(props);
+    const showAskForLocation = window.location.href.indexOf('https') > -1;
     this.state = {
       searchQuery: null,
       isQuerying: false,
       location: {},
-      error: null,
+      errors: {},
+      showAskForLocation,
       activities: [],
       placeData: {},
       helplineData: {},
@@ -51,13 +53,14 @@ class Home extends Component {
   geolocate = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
+        const viaFourSq = true;
         const geolocation = {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
         this.setState({
           location: geolocation,
-        });
+        }, () => this.initiateSearch('', this.state.location, viaFourSq));
       });
     }
   }
@@ -133,25 +136,54 @@ class Home extends Component {
     }
   }
 
-  initiateSearch = (searchText = '', location = null) => {
+  fetchDatafromMaps = (searchText = '', location) => {
+    const map = new window.google.maps.Map(document.getElementById('map'), {
+      zoom: 15,
+      center: this.india,
+    });
+
+    const request = {
+      location: location || this.india,
+      radius: '500',
+      fields: ['address_component'],
+      query: searchText
+    };
+    const service = new window.google.maps.places.PlacesService(map);
+    service.textSearch(request, this.callback);
+  }
+
+  handleFourSquareData = (res) => {
+    const venues = res.body.response && res.body.response.venues;
+    const venue = _.find(venues, (data) => {
+      return data.location && data.location.postalCode;
+    }) || {};
+    console.log('fs:', res.body.data);
+    this.setState({
+      searchQuery: venue.location.postalCode,
+      location: {
+        lat: venue.location.lat,
+        lng: venue.location.lng
+      },
+    }, () => this.fetchDatafromMaps(this.state.searchQuery, this.state.location));
+  }
+
+  initiateSearch = (searchText = '', location = null, viaFourSq = false) => {
+    const { errors } = this.state;
     // google endpoint
     this.setState({ isQuerying: true });
     if (!location) {
       this.searchCityViaPincode(searchText);
-    } else {
-      const map = new window.google.maps.Map(document.getElementById('map'), {
-        zoom: 15,
-        center: this.india,
+    } else if (viaFourSq) {
+      getDataFromLatLang(location.lat, location.lng, {
+        cb: this.handleFourSquareData,
+        onError: (err) => {
+          console.log(err);
+          this.setState({
+            errors: { ...errors, pincode: err },
+            isQuerying: false,
+          });
+        }
       });
-
-      const request = {
-        location: location || this.india,
-        radius: '500',
-        fields: ['address_component'],
-        query: searchText
-      };
-      const service = new window.google.maps.places.PlacesService(map);
-      service.textSearch(request, this.callback);
     }
   }
 
@@ -223,7 +255,10 @@ class Home extends Component {
   }
 
   render() {
-    const { searchQuery, isQuerying, activities, helplineData, zoneData, errors } = this.state;
+    const {
+      searchQuery, isQuerying, activities, helplineData, zoneData, errors, location,
+      showAskForLocation
+    } = this.state;
     return (
       <div className="App">
         <div className="container c-19-main-wrapper">
@@ -239,11 +274,13 @@ class Home extends Component {
               <p className="text-center c19-info-text">
                 or
               </p>
-              <div className="text-center">
-                <a className='text-link' onClick={this.geolocate}>
-                  Use device location
-                </a>
-              </div>
+              {showAskForLocation && (
+                <div className="text-center">
+                  <a className='text-link' onClick={this.geolocate}>
+                    Use device location
+                  </a>
+                </div>
+              )}
             </div>
           </div>
           {
@@ -256,6 +293,7 @@ class Home extends Component {
                 </div>
             )
           }
+          <GoogleMaps searchQuery={searchQuery} location={location} />
           {
             _.isEmpty(errors) && !_.isEmpty(zoneData) && (
               <React.Fragment>
