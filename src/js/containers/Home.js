@@ -59,14 +59,11 @@ class Home extends Component {
 
   updateSearchQuery = (event) => {
     const searchText = event.target.value || '';
-    // if (searchText.length > 6) {
-    // return;
-    // }
     this.setState({
       searchQuery: searchText,
       ...this.resetData()
     });
-    if (searchText.length > 3) {
+    if (searchText.length >= 3) {
       this.initiateSearch(searchText);
     }
   }
@@ -315,7 +312,7 @@ class Home extends Component {
                   />
                 </div>
                 <SearchInput
-                  placeholder="Enter your Pincode"
+                  placeholder="Enter your District Name/ Pincode"
                   inputChangeHandler={this.updateSearchQuery}
                   value={searchQuery}
                   isLoading={isQuerying}
