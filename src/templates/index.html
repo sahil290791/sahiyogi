@@ -37,6 +37,11 @@
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
           });
         });
+        $('.c19-search-input-container').on('focus', 'input[type=number]', function () {
+          $(this).on('wheel', function (e) {
+            e.preventDefault();
+          });
+        });
       });
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjt7-Mdz_jiSsXUT4-Teffc9fS3SrmVDA&libraries=places"></script>
