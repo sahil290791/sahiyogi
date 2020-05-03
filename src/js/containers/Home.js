@@ -216,7 +216,10 @@ class Home extends Component {
         lat: venue.location.lat,
         lng: venue.location.lng
       },
-    }, () => this.fetchDatafromMaps(this.state.searchQuery, this.state.location));
+    }, () => {
+      this.fetchDatafromMaps(this.state.searchQuery, this.state.location)
+      this.getZoneColorData();
+    });
   }
 
   initiateSearch = (searchText = '', location = null, viaFourSq = false) => {
