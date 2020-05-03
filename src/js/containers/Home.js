@@ -8,6 +8,7 @@ import CategorySearchInput from '../components/CategorySearchInput';
 import HelplineIcon from '../components/HelplineIcon';
 import AccordionToggleIcon from '../components/AccordionToggleIcon';
 import GoogleMaps from '../components/GoogleMaps';
+import Share from '../components/Share';
 import CategoryCards from '../components/CategoryCards';
 import StatusCard from '../components/StatusCard';
 import Footer from '../components/Footer';
@@ -498,6 +499,7 @@ class Home extends Component {
                     </div>
                   )}
                 </div>
+                <Share text="Disclaimer Text" />
                 <Footer text="Disclaimer Text" />
               </React.Fragment>
             )
