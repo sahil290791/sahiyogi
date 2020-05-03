@@ -385,9 +385,11 @@ class Home extends Component {
             !_.isEmpty(errors) && (
               <div className='row'>
                 <div className='col-12 text-center my-3'>
-                  We could not find data for this pincode.
+                  We could not find data for this location.
                   <br />
-                  Do not worry we are continously working on updating the website.
+                  Please try searching for a different location in India.
+                  <br />
+                  We are continously working on updating our website.
                 </div>
               </div>
             )
