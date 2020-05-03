@@ -62,7 +62,7 @@ class Home extends Component {
   autocompleteInputListener = () => {
     const place = this.autocomplete.getPlace();
     console.log('places ', place);
-    this.searchDebounced.cancel();
+    this.cancelTextBasedSearch();
     const placeData = {};
     _.each(place.address_components, (atr) => {
       const isCityPresent = _.includes(atr.types, 'administrative_area_level_2') || _.includes(atr.types, 'locality');
@@ -83,6 +83,12 @@ class Home extends Component {
       placeData,
       searchQuery: place.name,
     }, () => this.getZoneColorData());
+  }
+
+  cancelTextBasedSearch = () => {
+    if (this.searchDebounced) {
+      this.searchDebounced.cancel();
+    }
   }
 
   resetData = () => ({
@@ -107,10 +113,9 @@ class Home extends Component {
       ...this.resetData()
     });
     if (searchText.length >= 3) {
-      if (this.searchDebounced) {
-        this.searchDebounced.cancel();
-      }
-      this.debouncedSearch(searchText);
+      this.cancelTextBasedSearch();
+      // disabled input based search and only autocomplete search is given priority
+      // this.debouncedSearch(searchText);
     }
   }
 
