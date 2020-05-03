@@ -45,6 +45,9 @@ class Home extends Component {
 
   updateSearchQuery = (event) => {
     const searchText = event.target.value || '';
+    if (searchText.length > 6) {
+      return;
+    }
     this.setState({
       searchQuery: searchText,
       errors: null,
