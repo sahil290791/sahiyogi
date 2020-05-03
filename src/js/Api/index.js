@@ -25,6 +25,7 @@ const getLabsForAState = (state, options) => {
     url: `http://lockdown-api.scripbox.io/api/v1/labs`,
     withCredentials: false,
     showAllowOrigin: false,
+    key: 'getLabsForAState',
     ...options
   });
 };
@@ -34,6 +35,7 @@ const getZoneColor = (placeData, options) => {
     url: `http://lockdown-api.scripbox.io/api/v1/zone?district_name=${placeData.city}&state_name=${placeData.state}`,
     withCredentials: false,
     showAllowOrigin: false,
+    key: 'getZoneColor',
     ...options,
   });
 };
@@ -43,6 +45,7 @@ const getActivityData = (zone, options) => {
     url: `http://lockdown-api.scripbox.io/api/v1/activities?zone=${zone}`,
     withCredentials: false,
     showAllowOrigin: false,
+    key: 'getActivityData',
     ...options,
   });
 };
@@ -52,6 +55,7 @@ const getStateHelplineDetails = (state, options) => {
     url: `${API_URL}/get_state_wise_helpline_data?state=${state}`,
     withCredentials: false,
     showAllowOrigin: false,
+    key: 'getStateHelplineDetails',
     ...options,
   });
 };

@@ -71,7 +71,7 @@ const makeRequest = (options) => {
     timeout: 30000,
     withCredentials: options.withCredentials,
     cancelToken: new CancelToken(function executor(c) {
-      _pendingRequests[options.url] = c;
+      _pendingRequests[options.key] = c;
     }),
   })
     .then(res => processResponse(res))

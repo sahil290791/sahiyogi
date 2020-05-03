@@ -312,7 +312,7 @@ class Home extends Component {
                   />
                 </div>
                 <SearchInput
-                  placeholder="Enter your District Name/ Pincode"
+                  placeholder="Please Enter your Pincode/ City or Locality name"
                   inputChangeHandler={this.updateSearchQuery}
                   value={searchQuery}
                   isLoading={isQuerying}
@@ -403,7 +403,7 @@ class Home extends Component {
                   </div>
                 </div>
                 <div id="c19-lab-list">
-                  {labs && !_.isEmpty(labs.areaWise) && (
+                  {labs && !_.isEmpty(labs.areaWise) && false && (
                     <div className='status-card-container my-3'>
                       {this.renderLabTitle('Covid Statewise Lab')}
                       <div className="accordion" id="covid-area-lab-accordion">
@@ -435,8 +435,6 @@ class Home extends Component {
                                               {lab.title}
                                             </a>
                                             <div>{lab.address}</div>
-                                            <div>{lab.description}</div>
-                                            <div>{lab.city}</div>
                                           </div>
                                         </div>
                                       </div>
@@ -482,8 +480,6 @@ class Home extends Component {
                                               {lab.title}
                                             </a>
                                             <div>{lab.address}</div>
-                                            <div>{lab.description}</div>
-                                            <div>{lab.city}</div>
                                           </div>
                                         </div>
                                       </div>
