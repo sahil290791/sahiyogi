@@ -376,7 +376,7 @@ class Home extends Component {
                         {this.renderCovidCases('Total Cases', zoneData.total_cases, 'orange')}
                         {this.renderCovidCases('Total Recovered', zoneData.total_recovered, 'green')}
                         {this.renderCovidCases('Total Deaths', zoneData.total_deaths, 'red')}
-                        <div className='col-12 helpline-text text-center my-2'>
+                        <div className='col-12 helpline-text text-center mt-3 mb-0'>
                           <span>
                             <HelplineIcon />
                             <span>Helpline Number: </span>
