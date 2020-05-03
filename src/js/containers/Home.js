@@ -211,7 +211,8 @@ class Home extends Component {
               city: data.district === 'Bangalore' ? 'Bengaluru' : data.district,
               state: data.state_name,
               errors: null,
-            }
+            },
+            isQuerying: false,
           }, () => {
             this.fetchDatafromMaps(searchText, null, false);
             this.getZoneColorData();

@@ -78,7 +78,7 @@ const CategoryCards = (props) => {
         items.push(
           <div className="card accordion-category-header" id={idAttribute}>
             {header}
-            <div id={`collapseOne-${idAttribute}`} className="collapse show" aria-labelledby={`headingOne-${idAttribute}`} data-parent="#category-accordion">
+            <div id={`collapseOne-${idAttribute}`} className={`collapse ${items.length === 0 ? 'show' : ''}`} aria-labelledby={`headingOne-${idAttribute}`} data-parent="#category-accordion">
               <div className="card-body">
                 {allowedList}
                 {notAllowedList}
