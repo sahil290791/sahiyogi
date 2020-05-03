@@ -13,8 +13,8 @@ const SearchInput = (props) => {
   return (
     <div className={`c19-search-input-container ${inputClass}`}>
       <input
-        className="c19-search-input"
-        type='number'
+        className="c19-search-input c19-searchinput-js"
+        type='text'
         pattern="[0-9]*"
         value={value}
         placeholder={placeholder}

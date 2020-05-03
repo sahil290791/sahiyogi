@@ -37,10 +37,11 @@
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
           });
         });
-        $('.c19-search-input-container').on('focus', 'input[type=number]', function () {
-          $(this).on('wheel', function (e) {
-            e.preventDefault();
-          });
+        $(".c19-searchinput-js").on("keypress keyup blur",function (event) {
+          $(this).val($(this).val().replace(/[^\d].+/, ""));
+            if ((event.which < 48 || event.which > 57)) {
+              event.preventDefault();
+          }
         });
       });
     </script>
