@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import moment from 'moment';
+import _ from 'lodash';
 
 import Header from '../components/Header';
 import SearchInput from '../components/SearchInput';
@@ -10,6 +12,8 @@ import {
   getActivityData, getDataFromLatLang, getZoneColor, getCityFromPinCode,
   getStateHelplineDetails
 } from '../Api/index';
+
+const DATE_FORMAT = 'DD/MM/YYYY';
 
 class Home extends Component {
   constructor(props) {
@@ -205,6 +209,19 @@ class Home extends Component {
     });
   }
 
+  renderCovidCases = (label, value) => {
+    return (
+      <div className='col s4'>
+        <div className='col s12'>
+          {label}
+        </div>
+        <div className='col s12'>
+          {value}
+        </div>
+      </div>
+    );
+  }
+
   render() {
     const { searchQuery, isQuerying, activities, helplineData, zoneData, errors } = this.state;
     return (
@@ -240,18 +257,23 @@ class Home extends Component {
             )
           }
           {
-            _.isEmpty(errors) && (
+            _.isEmpty(errors) && !_.isEmpty(zoneData) && (
               <React.Fragment>
                 <div className='row'>
                   <div className='col s12'>
+                    <div className='col s12'>
+                      This data was Last updated on: {moment(zoneData.last_updated_at, DATE_FORMAT).format('Do MMM, YYYY')}
+                    </div>
                     <StatusCard city={this.state.placeData.city} status={(zoneData && zoneData.zone) || 'red'} />
-                      <div className='col s12'>
-                        <div>CoVID cases</div>
-                        {_.map(zoneData)}
-                        {_.map(helplineData.covid_helpline_numbers, (number) => {
-                          return <a href={`tel:${number}`}>{number}</a>
-                        })}
-                      </div>
+                    <div>CoVID cases</div>
+                    <div className='row'>
+                      {this.renderCovidCases('Total Cases', zoneData.total_cases)}
+                      {this.renderCovidCases('Total Recovered', zoneData.total_recovered)}
+                      {this.renderCovidCases('Total Deaths', zoneData.total_deaths)}
+                      {_.map(helplineData.covid_helpline_numbers, (number) => {
+                        return <a href={`tel:${number}`}>{number}</a>
+                      })}
+                    </div>
                     <div className='col s12'>
                       <div>Helpline Numbers</div>
                       {_.map(helplineData.covid_helpline_numbers, (number) => {

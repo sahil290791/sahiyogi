@@ -24,6 +24,7 @@
     ],
     "rules": {
       "react/jsx-filename-extension": "off",
+      "react/jsx-fragments": "off",
       "comma-dangle": "off",
       "guard-for-in": "off",
       "no-restricted-syntax": "off",
