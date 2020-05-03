@@ -2,7 +2,7 @@ import React from 'react';
 
 const Share = () => {
   return (
-    <div className='c19-share-section text-center'>
+    <div className='c19-share-section text-center mt-3'>
       <a className="c19-share-link facebook" href="https://facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcovidlockdown.org" target="_blank" rel="noreferrer noopener">
         <span className='d-inline-block'><i className='fab fa-facebook-square fa-2x' /></span>
       </a>
