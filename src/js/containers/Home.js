@@ -152,6 +152,9 @@ class Home extends Component {
 
   handleZoneData = (res) => {
     // 3rd network call post handling res
+    window.scrollTo(0, 0);
+    const mainContainer = document.getElementById('valign-id');
+    mainContainer.classList.remove('c19-valign-center');
     this.setState({
       zoneData: res.body.data,
       errors: null,
@@ -353,7 +356,7 @@ class Home extends Component {
       showAskForLocation, labs, placeData
     } = this.state;
     return (
-      <div className="App">
+      <div className="App c19-valign-center" id="valign-id">
         <div className="container c-19-main-wrapper">
           <div className='animated fadeInDown'>
             <div className="row">
@@ -427,7 +430,7 @@ class Home extends Component {
                           moment(zoneData.last_updated_at, DATE_FORMAT).format('Do MMM, YYYY')
                         }
                       </p>
-                      <div className='col-12 helpline-text text-center mt-3 mb-0'>
+                      <div className='col-12 helpline-text contact-text text-center mt-3 mb-0'>
                         <span>
                           <HelplineIcon />
                           <span>Helpline Number: </span>
