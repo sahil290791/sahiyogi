@@ -66,6 +66,10 @@ class Home extends Component {
   autocompleteInputListener = () => {
     const place = this.autocomplete.getPlace();
     this.cancelTextBasedSearch();
+    this.handleGoogleResponse(place);
+  }
+
+  handleGoogleResponse = (place) => {
     const placeData = {};
     _.each(place.address_components, (atr) => {
       const isCityPresent = _.includes(atr.types, 'administrative_area_level_2') || _.includes(atr.types, 'locality');
@@ -76,12 +80,13 @@ class Home extends Component {
         placeData.state = atr.long_name;
       }
     });
+    const { lat, lng } = place.geometry.location;
     this.setState({
       isQuerying: true,
       errors: null,
       location: {
-        lat: place.geometry.location.lat(),
-        lng: place.geometry.location.lng()
+        lat: typeof lat === 'function' ? lat() : lat,
+        lng: typeof lat === 'function' ? lng() : lat,
       },
       placeData,
       searchQuery: place.name,
@@ -206,9 +211,11 @@ class Home extends Component {
     if (status === window.google.maps.places.PlacesServiceStatus.OK) {
       for (let i = 0; i < results.length; i++) {
         const place = results[i];
+        const placeData = this.getCity(place);
         this.setState({
           isQuerying: false,
           errors: null,
+          searchQuery: placeData.city,
           location: {
             lat: place.geometry.location.lat(),
             lng: place.geometry.location.lng()
@@ -257,20 +264,12 @@ class Home extends Component {
   }
 
   handleFourSquareData = (res) => {
-    const venues = res.body.response && res.body.response.venues;
-    const venue = _.find(venues, (data) => {
-      return data.location && data.location.postalCode;
-    }) || {};
+    const { results, status } = res.body;
     this.setState({
-      searchQuery: venue.location.postalCode,
+      isQuerying: false,
       errors: null,
-      location: {
-        lat: venue.location.lat,
-        lng: venue.location.lng
-      },
     }, () => {
-      this.fetchDatafromMaps(this.state.searchQuery, this.state.location)
-      this.getZoneColorData();
+      this.handleGoogleResponse(results[0]);
     });
   }
 
