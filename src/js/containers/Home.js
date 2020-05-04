@@ -66,6 +66,10 @@ class Home extends Component {
   autocompleteInputListener = () => {
     const place = this.autocomplete.getPlace();
     this.cancelTextBasedSearch();
+    this.handleGoogleResponse(place);
+  }
+
+  handleGoogleResponse = (place) => {
     const placeData = {};
     _.each(place.address_components, (atr) => {
       const isCityPresent = _.includes(atr.types, 'administrative_area_level_2') || _.includes(atr.types, 'locality');
@@ -76,12 +80,13 @@ class Home extends Component {
         placeData.state = atr.long_name;
       }
     });
+    const { lat, lng } = place.geometry.location;
     this.setState({
       isQuerying: true,
       errors: null,
       location: {
-        lat: place.geometry.location.lat(),
-        lng: place.geometry.location.lng()
+        lat: typeof lat === 'function' ? lat() : lat,
+        lng: typeof lat === 'function' ? lng() : lat,
       },
       placeData,
       searchQuery: place.name,
@@ -264,7 +269,7 @@ class Home extends Component {
       isQuerying: false,
       errors: null,
     }, () => {
-      this.callback(results, status);
+      this.handleGoogleResponse(results[0]);
     });
   }
 
