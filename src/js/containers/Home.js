@@ -430,27 +430,34 @@ class Home extends Component {
                           moment(zoneData.last_updated_at, DATE_FORMAT).format('Do MMM, YYYY')
                         }
                       </p>
-                      <div className='col-12 helpline-text contact-text text-center mt-3 mb-0'>
-                        <span>
-                          <HelplineIcon />
-                          <span>Helpline Number: </span>
-                        </span>
-                        {_.map(helplineData.covid_helpline_numbers, (number, index) => {
-                          return (
-                            <span>
-                              <a href={`tel:${number}`}>
-                                {number}
-                              </a>
-                              {(index !== helplineData.covid_helpline_numbers.length - 1) ? `${' / '}` : ''}
-                            </span>
-                          );
-                        })}
+                    </div>
+                    <div className='card helpline-card'>
+                      <div className='text-center'>
+                        <div className='helpline-text contact-text'>
+                          <span>
+                            <HelplineIcon />
+                            <span>Helpline Number: </span>
+                          </span>
+                          {_.map(helplineData.covid_helpline_numbers, (number, index) => {
+                            return (
+                              <span>
+                                <a href={`tel:${number}`}>
+                                  {number}
+                                </a>
+                                {(index !== helplineData.covid_helpline_numbers.length - 1) ? `${' / '}` : ''}
+                              </span>
+                            );
+                          })}
+                        </div>
+                        <div className='helpline-text mt-2'>
+                          <a href="#c19-lab-list" className='micro-text' onClick={() => $('.accordion-title-link').trigger('click')}>
+                            Looking for COVID 19 testing centres near you?
+                          </a>
+                        </div>
                       </div>
-                      <div className='col-12 helpline-text text-center my-2'>
-                        <a href="#c19-lab-list" className='micro-text' onClick={() => $('.accordion-title-link').trigger('click')}>
-                          Looking for COVID 19 testing centres near you?
-                        </a>
-                      </div>
+                    </div>
+                    <div className='mb-3'>
+                      <Share />
                     </div>
                   </div>
                 </div>
@@ -556,7 +563,7 @@ class Home extends Component {
                     </div>
                   )}
                 </div>
-                <Share text="Disclaimer Text" />
+                <Share />
                 <Footer text="Disclaimer Text" />
               </React.Fragment>
             )
