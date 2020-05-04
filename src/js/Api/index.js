@@ -1,8 +1,6 @@
 import { makeGetRequest } from './api';
 
-// const FOURSQUARE_CLIENT_SECRET = 'HRDKFPHCHB3VXRKAKZEI0UJBDTKTGPJKJ1VKG3VR11MSI2OI';
-// const FOURSQUARE_CLIENT_ID = 'G32Z1SB20LPG1UJRLBQV1PKXKTAQV0WIJS50A2F3BD4CKVHN';
-const GOOGLE_MAPS_API_KEY = `AIzaSyCjt7-Mdz_jiSsXUT4-Teffc9fS3SrmVDA`;
+const GOOGLE_MAPS_API_KEY = 'AIzaSyCjt7-Mdz_jiSsXUT4-Teffc9fS3SrmVDA';
 
 const API_URL = process.env.NODE_ENV === 'production' ? '/node-api' : 'http://localhost:5000/node-api';
 
