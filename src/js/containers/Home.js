@@ -363,7 +363,7 @@ class Home extends Component {
               <div className="col-12">
                 <div className='header-container'>
                   <Header
-                    title="Lockdown Handbook"
+                    title="COVID-19 Lockdown Handbook"
                     description="Find out what's allowed and restricted in your area during the COVID-19 lockdown."
                   />
                 </div>
