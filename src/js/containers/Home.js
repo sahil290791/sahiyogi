@@ -206,9 +206,11 @@ class Home extends Component {
     if (status === window.google.maps.places.PlacesServiceStatus.OK) {
       for (let i = 0; i < results.length; i++) {
         const place = results[i];
+        const placeData = this.getCity(place);
         this.setState({
           isQuerying: false,
           errors: null,
+          searchQuery: placeData.city,
           location: {
             lat: place.geometry.location.lat(),
             lng: place.geometry.location.lng()
@@ -257,20 +259,12 @@ class Home extends Component {
   }
 
   handleFourSquareData = (res) => {
-    const venues = res.body.response && res.body.response.venues;
-    const venue = _.find(venues, (data) => {
-      return data.location && data.location.postalCode;
-    }) || {};
+    const { results, status } = res.body;
     this.setState({
-      searchQuery: venue.location.postalCode,
+      isQuerying: false,
       errors: null,
-      location: {
-        lat: venue.location.lat,
-        lng: venue.location.lng
-      },
     }, () => {
-      this.fetchDatafromMaps(this.state.searchQuery, this.state.location)
-      this.getZoneColorData();
+      this.callback(results, status);
     });
   }
 
