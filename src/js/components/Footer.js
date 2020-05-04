@@ -5,7 +5,7 @@ const Footer = (props) => {
   const { text } = props;
   return (
     <footer className="c19-footer">
-      <p className='text-center c19-info-text'>{text}</p>
+      <p className='text-center c19-info-text micro-text'>{text}</p>
     </footer>
   );
 };

@@ -564,7 +564,7 @@ class Home extends Component {
                   )}
                 </div>
                 <Share />
-                <Footer text="Disclaimer Text" />
+                <Footer text="Disclaimer: We use state and national government bulletins and official handles to update our numbers. The date and time of the update of the information is shared. The data available here might vary from other sources depending on the time of update." />
               </React.Fragment>
             )
           }
