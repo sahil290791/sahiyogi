@@ -3,7 +3,7 @@ import { makeGetRequest } from './api';
 const FOURSQUARE_CLIENT_SECRET = 'HRDKFPHCHB3VXRKAKZEI0UJBDTKTGPJKJ1VKG3VR11MSI2OI';
 const FOURSQUARE_CLIENT_ID = 'G32Z1SB20LPG1UJRLBQV1PKXKTAQV0WIJS50A2F3BD4CKVHN';
 
-const API_URL = process.env.NODE_ENV === 'production' ? '/api' : 'http://localhost:5000/api';
+const API_URL = process.env.NODE_ENV === 'production' ? '/node-api' : 'http://localhost:5000/node-api';
 
 const getDataFromLatLang = (lat, lang, options) => {
   makeGetRequest({

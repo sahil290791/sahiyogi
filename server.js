@@ -24,7 +24,7 @@ app.set('trust proxy', true);
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'dist')));
 
-app.get('/api/get_category_data', cors(corsOptions), async (req, res) => {
+app.get('/node-api/get_category_data', cors(corsOptions), async (req, res) => {
   const results = [];
   await fs.createReadStream(path.resolve(__dirname, 'src', 'data', 'covid_activities.csv'))
     .pipe(csv())
@@ -36,7 +36,7 @@ app.get('/api/get_category_data', cors(corsOptions), async (req, res) => {
     });
 });
 
-app.get('/api/get_state_wise_helpline_data', cors(corsOptions), async (req, res) => {
+app.get('/node-api/api/get_state_wise_helpline_data', cors(corsOptions), async (req, res) => {
   const results = [];
   try {
     await fs.createReadStream(path.resolve(__dirname, 'src', 'data', 'covid_mapping_helplines.csv'))
