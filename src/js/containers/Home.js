@@ -378,9 +378,9 @@ class Home extends Component {
                     <p className="text-center c19-info-text">
                       or
                     </p>
-                    <div className="text-center">
-                      <a href="#location" className='text-link' onClick={this.geolocate}>
-                        Use device location
+                    <div className="text-center blue-color">
+                      <a className='text-link' onClick={this.geolocate}>
+                        <span><i className='fas fa-location-arrow fa-sm blue-color' /></span> Detect my location
                       </a>
                     </div>
                   </div>

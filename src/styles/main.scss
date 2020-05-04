@@ -110,8 +110,12 @@ p {
   text-align: center;
 }
 
+.blue-color {
+  color: #06c !important;
+}
+
 a, .text-link {
-  color: #06c;
+  color: #06c !important;
   cursor: grab;
   text-decoration: none;
 }
