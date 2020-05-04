@@ -349,7 +349,7 @@ class Home extends Component {
       showAskForLocation, labs, placeData
     } = this.state;
     return (
-      <div className="App c19-valign-center">
+      <div className="App">
         <div className="container c-19-main-wrapper">
           <div className='animated fadeInDown'>
             <div className="row">

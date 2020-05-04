@@ -13,6 +13,10 @@
   .c19-total-stats {
     .card-deck .card {
       margin-bottom: 10px;
+
+      .card-body {
+        padding: 12px;
+      }
     }
   }
 
@@ -66,8 +70,8 @@
   }
 }
 
-@media only screen and (min-width: 577px) {
+@media only screen and (min-width: 993px) {
   .header-container {
-    margin-top: 20px;
+    margin-top: 60px;
   }
 }
