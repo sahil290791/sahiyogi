@@ -9,5 +9,7 @@ RUN yarn install --cache-folder .yarn-cache
 COPY . ./
 EXPOSE 4000
 ENV HOST covidlockdown.org
-CMD yarn build
+
+RUN yarn build
+
 CMD yarn start
