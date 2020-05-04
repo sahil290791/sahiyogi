@@ -441,7 +441,7 @@ class Home extends Component {
                           {_.map(helplineData.covid_helpline_numbers, (number, index) => {
                             return (
                               <span>
-                                <a href={`tel:${number}`}>
+                                <a href={`tel:${number.replace(/([a-z]|\(|\)|\s)/g, '')}`}>
                                   {number}
                                 </a>
                                 {(index !== helplineData.covid_helpline_numbers.length - 1) ? `${' / '}` : ''}

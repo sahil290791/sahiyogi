@@ -110,8 +110,9 @@ p {
   text-align: center;
 }
 
-a {
+a, .text-link {
   color: #06c;
+  cursor: grab;
   text-decoration: none;
 }
 
