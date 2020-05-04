@@ -16,6 +16,7 @@ COPY . ./
 EXPOSE 5000
 
 ENV HOST 0.0.0.0
+ENV NODE_ENV production
 
 RUN yarn build
 
