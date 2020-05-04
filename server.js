@@ -4,10 +4,22 @@ import fs from 'fs';
 import cors from 'cors';
 import path from 'path';
 import _ from 'lodash';
+import nonce from 'nonce';
+
+import logger from './logger';
+
 
 const express = require('express');
 
 const app = express();
+
+app.use((req, res, next) => {
+  res.locals.nonce = nonce();
+  logger.info({
+    method: req.method, path: req.url, params: req.params, body: req.body
+  });
+  next();
+});
 
 // CORS disabled
 const corsOptions = {

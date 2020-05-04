@@ -22,7 +22,7 @@ const getCityFromPinCode = (pincode, options) => {
 
 const getLabsForAState = (state, options) => {
   makeGetRequest({
-    url: `http://lockdown-api.scripbox.io/api/v1/labs`,
+    url: `https://covidlockdown.org/api/v1/labs`,
     withCredentials: false,
     showAllowOrigin: false,
     key: 'getLabsForAState',
@@ -32,7 +32,7 @@ const getLabsForAState = (state, options) => {
 
 const getZoneColor = (placeData, options) => {
   makeGetRequest({
-    url: `http://lockdown-api.scripbox.io/api/v1/zone?district_name=${placeData.city}&state_name=${placeData.state}`,
+    url: `https://covidlockdown.org/api/v1/zone?district_name=${placeData.city}&state_name=${placeData.state}`,
     withCredentials: false,
     showAllowOrigin: false,
     key: 'getZoneColor',
@@ -42,7 +42,7 @@ const getZoneColor = (placeData, options) => {
 
 const getActivityData = (zone, options) => {
   makeGetRequest({
-    url: `http://lockdown-api.scripbox.io/api/v1/activities?zone=${zone}`,
+    url: `https://covidlockdown.org/api/v1/activities?zone=${zone}`,
     withCredentials: false,
     showAllowOrigin: false,
     key: 'getActivityData',
