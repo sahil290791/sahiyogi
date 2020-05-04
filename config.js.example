@@ -1,0 +1,8 @@
+module.exports = {
+  COVID_ORG_URL: process.env.COVID_ORG_HOST_URL || 'http://lockdown-api.scripbox.io/api',
+  NODE_API_URL: process.env.NODE_API_URL || 'http://localhost:5000/node-api',
+  FOURSQUARE_CLIENT_SECRET: process.env.FOURSQUARE_CLIENT_SECRET || 'asdadasd-asdasd2asdasd_Asdasd',
+  FOURSQUARE_CLIENT_ID: process.env.FOURSQUARE_CLIENT_ID || '324234_asdasd',
+  PINCODE_API_URL: process.env.PINCODE_API_URL || 'https://pincode.saratchandra.in/api',
+  GOOGLE_MAPS_KEY: process.env.GOOGLE_MAPS_KEY || 'adadasd3adadsdsad-adasd_asdasd'
+};
