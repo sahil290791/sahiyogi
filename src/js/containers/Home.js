@@ -46,12 +46,16 @@ class Home extends Component {
   }
 
   componentDidMount() {
+    const options = {
+      componentRestrictions: { country: 'in' }
+    };
+
     this.map = new window.google.maps.Map(document.getElementById('map'), {
       center: this.defaultLocation,
       zoom: 6
     });
     const input = document.getElementById('search-input');
-    this.autocomplete = new window.google.maps.places.Autocomplete(input);
+    this.autocomplete = new window.google.maps.places.Autocomplete(input, options);
     this.autocomplete.bindTo('bounds', this.map);
     this.autocomplete.setFields(
       ['address_components', 'geometry', 'icon', 'name']
