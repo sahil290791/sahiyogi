@@ -379,7 +379,7 @@ class Home extends Component {
                       or
                     </p>
                     <div className="text-center">
-                      <a className='text-link' onClick={this.geolocate}>
+                      <a href="#location" className='text-link' onClick={this.geolocate}>
                         Use device location
                       </a>
                     </div>
