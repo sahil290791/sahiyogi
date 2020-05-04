@@ -110,14 +110,21 @@ p {
   text-align: center;
 }
 
-.blue-color {
+.link-blue-color {
   color: #06c !important;
 }
 
 a, .text-link {
-  color: #06c !important;
+  color: #06c;
   cursor: grab;
   text-decoration: none;
+}
+
+.feedback-link {
+  margin-top: 15px;
+  display: inline-block;
+  font-size: 14px;
+  padding: 5px;
 }
 
 .c19-header {

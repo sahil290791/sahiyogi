@@ -377,9 +377,9 @@ class Home extends Component {
                     <p className="text-center c19-info-text">
                       or
                     </p>
-                    <div className="text-center blue-color">
+                    <div className="text-center link-blue-color">
                       <a className='text-link' onClick={this.geolocate}>
-                        <span><i className='fas fa-location-arrow fa-sm blue-color' /></span> Detect my location
+                        <span><i className='fas fa-location-arrow fa-sm link-blue-color' /></span> Detect my location
                       </a>
                     </div>
                   </div>
@@ -562,7 +562,16 @@ class Home extends Component {
                     </div>
                   )}
                 </div>
-                <Share />
+                <div className='row'>
+                  <div className='col s12 text-center'>
+                    <a
+                      className='feedback-link'
+                      href="https://forms.gle/We9AowVkcbF43WjH8"
+                      target='_blank'>
+                      Submit Feedback
+                    </a>
+                  </div>
+                </div>
                 <Footer text="Disclaimer: We use state and national government bulletins and official handles to update our numbers. The date and time of the update of the information is shared. The data available here might vary from other sources depending on the time of update." />
               </React.Fragment>
             )
