@@ -41,7 +41,6 @@
     "express": "^4.17.1",
     "fs": "^0.0.1-security",
     "lodash": "^4.17.15",
-    "lodash-deep": "^2.0.0",
     "moment": "^2.25.1",
     "nonce": "^1.0.4",
     "prop-types": "^15.7.2",
