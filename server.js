@@ -15,6 +15,7 @@ const express = require('express');
 const app = express();
 
 if (process.env.NODE_ENV !== 'development') {
+  console.log('enabling hsts');
   app.use(helmet());
   app.disable('x-powered-by');
   const sixtyDaysInSeconds = 5184000;
