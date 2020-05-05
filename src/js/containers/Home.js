@@ -563,13 +563,18 @@ class Home extends Component {
                   )}
                 </div>
                 <div className='row'>
-                  <div className='col s12 text-center'>
-                    <a
-                      className='feedback-link'
-                      href="https://forms.gle/We9AowVkcbF43WjH8"
-                      target='_blank'>
-                      Submit Feedback
-                    </a>
+                  <div className='col s12 text-center mt-3'>
+                    <div className='card d-inline-block'>
+                      <a
+                        className='feedback-link feedback-link m-0 p-2'
+                        href="https://forms.gle/We9AowVkcbF43WjH8"
+                        target='_blank'
+                        rel='noopener noreferrer'
+                      >
+                        <i className='far fa-comment-alt fa-sm link-blue-color mr-2' />
+                        Submit Feedback
+                      </a>
+                    </div>
                   </div>
                 </div>
                 <Footer text="Disclaimer: We use state and national government bulletins and official handles to update our numbers. The date and time of the update of the information is shared. The data available here might vary from other sources depending on the time of update." />
