@@ -18,7 +18,7 @@ import {
   getStateHelplineDetails, getLabsForAState
 } from '../Api/index';
 
-import { getBrowser } from '../helpers/BrowserDetection'
+import { getBrowser } from '../helpers/BrowserDetection';
 
 import { getLabs } from '../helpers/LabHelpers';
 
