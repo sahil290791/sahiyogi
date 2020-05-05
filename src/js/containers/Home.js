@@ -18,6 +18,8 @@ import {
   getStateHelplineDetails, getLabsForAState
 } from '../Api/index';
 
+import { getBrowser } from '../helpers/BrowserDetection'
+
 import { getLabs } from '../helpers/LabHelpers';
 
 const DATE_FORMAT = 'DD/MM/YYYY';
@@ -28,6 +30,7 @@ class Home extends Component {
   constructor(props) {
     super(props);
     const showAskForLocation = window.location.href.indexOf('https') > -1;
+    const IS_SAFARI = getBrowser() === 'Safari';
     this.state = {
       searchQuery: null,
       isQuerying: false,
@@ -39,6 +42,7 @@ class Home extends Component {
       helplineData: {},
       zoneData: {},
       labs: {},
+      isSafari: IS_SAFARI,
     };
     this.map = null;
     this.defaultLocation = { lat: 20.7492073, lng: 73.7042651 };
@@ -352,7 +356,7 @@ class Home extends Component {
   render() {
     const {
       searchQuery, isQuerying, activities, helplineData, zoneData, errors, location,
-      showAskForLocation, labs, placeData
+      showAskForLocation, labs, placeData, isSafari
     } = this.state;
     return (
       <div className="App c19-valign-center" id="valign-id">
@@ -372,18 +376,19 @@ class Home extends Component {
                   value={searchQuery}
                   isLoading={isQuerying}
                 />
-                {showAskForLocation && (
+                {showAskForLocation && !isSafari ? (
                   <div>
                     <p className="text-center c19-info-text">
                       or
                     </p>
                     <div className="text-center link-blue-color">
-                      <a className='text-link' onClick={this.geolocate}>
+                      <a className='text-link' onClick={this.geolocate} data-event=''>
                         <span><i className='fas fa-location-arrow fa-sm link-blue-color' /></span> Detect my location
                       </a>
                     </div>
                   </div>
-                )}
+                ) : null
+              }
               </div>
             </div>
           </div>
