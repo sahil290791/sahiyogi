@@ -29,7 +29,7 @@ const CategoryCards = (props) => {
       const notAllowedActivities = _.filter(activityList, ['allowed', false]);
       const header = (
         <div className="card-header" id={`headingOne-${idAttribute}`}>
-          <div className={`${items.length === 0 ? '' : 'collapsed'} accordion-title-link`} data-toggle="collapse" data-target={`#collapseOne-${idAttribute}`} aria-expanded="true" aria-controls="collapseOne">
+          <div className={`${items.length === 0 ? '' : 'collapsed'} accordion-title-link`} data-toggle="collapse" data-target={`#collapseOne-${idAttribute}`} aria-expanded="true" aria-controls="collapseOne" data-action="click" data-category="lockdown-handbook" data-label={`category-accordion-${activityName}`}>
             <span className='d-inline-block mr-2'><i className={`fas fa-${getCategoryIcon(idAttribute)} fa-sm`} /></span>
             <span>{activityName}</span>
             <div className='arrow-down'>

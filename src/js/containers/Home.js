@@ -440,7 +440,12 @@ class Home extends Component {
                           {_.map(helplineData.covid_helpline_numbers, (number, index) => {
                             return (
                               <span>
-                                <a href={`tel:${number.replace(/([a-z]|\(|\)|\s)/g, '')}`}>
+                                <a
+                                  href={`tel:${number.replace(/([a-z]|\(|\)|\s)/g, '')}`}
+                                  data-action="click"
+                                  data-category="lockdown-handbook"
+                                  data-label="helpline-number"
+                                >
                                   {number}
                                 </a>
                                 {(index !== helplineData.covid_helpline_numbers.length - 1) ? `${' / '}` : ''}
@@ -499,6 +504,9 @@ class Home extends Component {
                                               target='_blank'
                                               rel='noopener noreferrer'
                                               className='mb-2'
+                                              data-action="click"
+                                              data-category="lockdown-handbook"
+                                              data-label="areawise-lab-title"
                                             >
                                               {lab.title}
                                             </a>
@@ -544,6 +552,9 @@ class Home extends Component {
                                               target='_blank'
                                               rel='noopener noreferrer'
                                               className='mb-2'
+                                              data-action="click"
+                                              data-category="lockdown-handbook"
+                                              data-label="statewise-lab-title"
                                             >
                                               {lab.title}
                                             </a>
@@ -570,6 +581,9 @@ class Home extends Component {
                         href="https://forms.gle/We9AowVkcbF43WjH8"
                         target='_blank'
                         rel='noopener noreferrer'
+                        data-action="click"
+                        data-category="lockdown-handbook"
+                        data-label="submit-feedback"
                       >
                         <i className='far fa-comment-alt fa-sm link-blue-color mr-2' />
                         Submit Feedback

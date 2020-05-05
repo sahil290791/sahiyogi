@@ -20,7 +20,13 @@ const CategorySearchInput = (props) => {
             type="text"
             maxLength="50"
           />
-          <button type='button' className="c19-search-input-icon">
+          <button
+            type='button'
+            className="c19-search-input-icon"
+            data-action="click"
+            data-category="lockdown-handbook"
+            data-label="category-search-input-icon"
+          >
             {icon}
           </button>
         </div>

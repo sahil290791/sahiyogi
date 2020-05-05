@@ -28,7 +28,13 @@ const SearchInput = (props) => {
         onChange={inputChangeHandler}
         disabled={disabled}
       />
-      <button type='button' className="c19-search-input-icon">
+      <button
+        type='button'
+        className="c19-search-input-icon"
+        data-action="click"
+        data-category="lockdown-handbook"
+        data-label="main-search-input-icon"
+      >
         {icon}
       </button>
     </div>
