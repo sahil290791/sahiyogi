@@ -474,7 +474,7 @@ class Home extends Component {
                             return (
                               <span>
                                 <a
-                                  href={`tel:${number.replace(/([a-z]|\(|\)|\s)/g, '')}`}
+                                  href={`tel:${number.replace(/[^0-9]/g, '')}`}
                                   onClick={() => {
                                     window.sendEvents({
                                       category: 'covid',
