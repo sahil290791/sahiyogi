@@ -8,10 +8,20 @@ yarn install
 
 # start the server
 yarn dev
+yarn start
 ```
 
 ### Production Setup
 Run `yarn build` and `yarn start` to run the app
+
+### Deployment
+```
+docker build . -t scripbox/sahiyogi:v0.1.5
+
+docker push scripbox/sahiyogi:v0.1.5
+
+gcloud beta compute instances --project "covid-lockdown-276006" update-container covidlockdownorg --container-image scripbox/sahiyogi:v0.1.5
+```
 
 ### API server
 ##### /api/get_category_data
