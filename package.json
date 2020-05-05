@@ -1,6 +1,6 @@
 {
   "name": "sahiyogi",
-  "version": "1.0.0",
+  "version": "0.1.6",
   "engines": {
     "node": "12.x.x",
     "yarn": "1.22.4"
