@@ -30,7 +30,7 @@ const SearchInput = (props) => {
       />
       <button
         type='button'
-        className="c19-search-input-icon"
+        className="c19-search-input-icon trigger-event"
         data-action="click"
         data-category="lockdown-handbook"
         data-label="main-search-input-icon"

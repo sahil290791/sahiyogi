@@ -448,6 +448,7 @@ class Home extends Component {
                                 <a
                                   href={`tel:${number.replace(/([a-z]|\(|\)|\s)/g, '')}`}
                                   data-action="click"
+                                  className='trigger-event'
                                   data-category="lockdown-handbook"
                                   data-label="helpline-number"
                                 >
@@ -508,7 +509,7 @@ class Home extends Component {
                                               href={lab.readmore}
                                               target='_blank'
                                               rel='noopener noreferrer'
-                                              className='mb-2'
+                                              className='mb-2 trigger-event'
                                               data-action="click"
                                               data-category="lockdown-handbook"
                                               data-label="areawise-lab-title"
@@ -556,7 +557,7 @@ class Home extends Component {
                                               href={`https://covid.icmr.org.in${lab.readmore}`}
                                               target='_blank'
                                               rel='noopener noreferrer'
-                                              className='mb-2'
+                                              className='mb-2 trigger-event'
                                               data-action="click"
                                               data-category="lockdown-handbook"
                                               data-label="statewise-lab-title"
@@ -582,7 +583,7 @@ class Home extends Component {
                   <div className='col s12 text-center mt-3'>
                     <div className='card d-inline-block'>
                       <a
-                        className='feedback-link feedback-link m-0 p-2'
+                        className='feedback-link feedback-link m-0 p-2 trigger-event'
                         href="https://forms.gle/We9AowVkcbF43WjH8"
                         target='_blank'
                         rel='noopener noreferrer'

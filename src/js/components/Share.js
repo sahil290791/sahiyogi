@@ -5,7 +5,7 @@ const Share = () => {
   return (
     <div className='c19-share-section text-center mt-3'>
       <a
-        className="c19-share-link facebook"
+        className="c19-share-link facebook trigger-event"
         href="https://facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcovidlockdown.org"
         target="_blank"
         rel="noreferrer noopener"
@@ -16,7 +16,7 @@ const Share = () => {
         <span className='d-inline-block'><i className='fab fa-facebook-square fa-2x' /></span>
       </a>
       <a
-        className="c19-share-link twitter"
+        className="c19-share-link twitter trigger-event"
         href={`https://twitter.com/intent/tweet/?text=${encodeURIComponent(shareMessage)}`}
         target="_blank"
         rel="noreferrer noopener"
@@ -27,7 +27,7 @@ const Share = () => {
         <span className='d-inline-block mx-3'><i className='fab fa-twitter-square fa-2x' /></span>
       </a>
       <a
-        className="c19-share-link whatsapp"
+        className="c19-share-link whatsapp trigger-event"
         href={`https://api.whatsapp.com/send?text=${encodeURIComponent(shareMessage)}`}
         target="_blank"
         rel="noreferrer noopener"
