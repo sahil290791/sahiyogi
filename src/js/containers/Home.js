@@ -85,6 +85,11 @@ class Home extends Component {
       }
     });
     const { lat, lng } = place.geometry.location;
+    window.sendEvents({
+      category: 'google search',
+      action: `${placeData.state}`,
+      label: `${placeData.city}`
+    });
     this.setState({
       isQuerying: true,
       errors: null,
@@ -139,6 +144,11 @@ class Home extends Component {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
+        window.sendEvents({
+          category: 'covid',
+          action: 'click',
+          label: 'detect location'
+        });
         this.setState({
           location: geolocation,
         }, () => this.initiateSearch('', this.state.location, viaFourSq));
@@ -163,16 +173,24 @@ class Home extends Component {
     // 3rd network call post handling res
     window.scrollTo(0, 0);
     const mainContainer = document.getElementById('valign-id');
+    const { placeData } = this.state;
     mainContainer.classList.remove('c19-valign-center');
     this.setState({
       zoneData: res.body.data,
       errors: null,
     }, () => getActivityData(res.body.data.zone, {
       cb: this.handleActivities,
-      onError: (data) => this.setState({
-        isQuerying: false,
-        errors: data,
-      })
+      onError: (data) => {
+        window.sendEvents({
+          category: 'zone',
+          action: 'error',
+          label: `searched for state: ${placeData.state} district: ${placeData.city}`
+        });
+        this.setState({
+          isQuerying: false,
+          errors: data,
+        });
+      }
     }));
   }
 
@@ -191,7 +209,10 @@ class Home extends Component {
         cb: (res) => this.setState({
           helplineData: res.body.data,
           isQuerying: false,
-        }, this.fetchLabsDataForState)
+        }, this.fetchLabsDataForState),
+        onError: (err) => {
+          console.log(err);
+        }
       }
     );
   }
@@ -201,13 +222,20 @@ class Home extends Component {
     const { placeData, errors } = this.state;
     getZoneColor(placeData, {
       cb: this.handleZoneData,
-      onError: () => this.setState({
-        isQuerying: false,
-        errors: {
-          ...errors,
-          zoneData: 'Data for pincode is not available as of now.\n We are continously updating our database.'
-        },
-      })
+      onError: () => {
+        window.sendEvents({
+          category: 'zone',
+          action: 'fetch-error',
+          label: `queried for ${placeData.state} ${placeData.city}`
+        });
+        this.setState({
+          isQuerying: false,
+          errors: {
+            ...errors,
+            zoneData: 'Data for pincode is not available as of now.\n We are continously updating our database.'
+          },
+        });
+      }
     });
   }
 
@@ -447,10 +475,14 @@ class Home extends Component {
                               <span>
                                 <a
                                   href={`tel:${number.replace(/([a-z]|\(|\)|\s)/g, '')}`}
-                                  data-action="click"
+                                  onClick={() => {
+                                    window.sendEvents({
+                                      category: 'covid',
+                                      action: 'click',
+                                      label: `helpline-number ${number}`
+                                    });
+                                  }}
                                   className='trigger-event'
-                                  data-category="lockdown-handbook"
-                                  data-label="helpline-number"
                                 >
                                   {number}
                                 </a>
@@ -556,6 +588,13 @@ class Home extends Component {
                                             <a
                                               href={`https://covid.icmr.org.in${lab.readmore}`}
                                               target='_blank'
+                                              onClick={() => {
+                                                window.sendEvents({
+                                                  category: 'covid',
+                                                  action: 'click',
+                                                  label: `open lab: ${lab.title}`
+                                                });
+                                              }}
                                               rel='noopener noreferrer'
                                               className='mb-2 trigger-event'
                                               data-action="click"
@@ -588,6 +627,13 @@ class Home extends Component {
                         target='_blank'
                         rel='noopener noreferrer'
                         data-action="click"
+                        onClick={() => {
+                          window.sendEvents({
+                            category: 'covid',
+                            action: 'click',
+                            label: 'submit feedback'
+                          });
+                        }}
                         data-category="lockdown-handbook"
                         data-label="submit-feedback"
                       >

@@ -9,9 +9,13 @@ const Share = () => {
         href="https://facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcovidlockdown.org"
         target="_blank"
         rel="noreferrer noopener"
-        data-action="click"
-        data-category="lockdown-handbook"
-        data-label="share-facebook"
+        onClick={() => {
+          window.sendEvents({
+            category: 'covid',
+            action: 'click',
+            label: 'share-facebook'
+          });
+        }}
       >
         <span className='d-inline-block'><i className='fab fa-facebook-square fa-2x' /></span>
       </a>
@@ -20,9 +24,13 @@ const Share = () => {
         href={`https://twitter.com/intent/tweet/?text=${encodeURIComponent(shareMessage)}`}
         target="_blank"
         rel="noreferrer noopener"
-        data-action="click"
-        data-category="lockdown-handbook"
-        data-label="share-twitter"
+        onClick={() => {
+          window.sendEvents({
+            category: 'covid',
+            action: 'click',
+            label: 'share-twitter'
+          });
+        }}
       >
         <span className='d-inline-block mx-3'><i className='fab fa-twitter-square fa-2x' /></span>
       </a>
@@ -31,9 +39,13 @@ const Share = () => {
         href={`https://api.whatsapp.com/send?text=${encodeURIComponent(shareMessage)}`}
         target="_blank"
         rel="noreferrer noopener"
-        data-action="click"
-        data-category="lockdown-handbook"
-        data-label="share-whatsapp"
+        onClick={() => {
+          window.sendEvents({
+            category: 'covid',
+            action: 'click',
+            label: 'share-whatsapp'
+          });
+        }}
       >
         <span className='d-inline-block'><i className='fab fa-whatsapp-square fa-2x' /></span>
       </a>
