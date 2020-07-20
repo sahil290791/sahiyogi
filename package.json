@@ -41,7 +41,7 @@
     "express": "^4.17.1",
     "fs": "^0.0.1-security",
     "helmet": "^3.22.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "moment": "^2.25.1",
     "nonce": "^1.0.4",
     "prop-types": "^15.7.2",
