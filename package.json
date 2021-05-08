@@ -5,7 +5,7 @@
     "node": "12.x.x",
     "yarn": "1.22.4"
   },
-  "description": "",
+  "description": "An app to help public during Covid 19",
   "main": "index.js",
   "scripts": {
     "start": "babel-node server.js",
