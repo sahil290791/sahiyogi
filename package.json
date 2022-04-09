@@ -42,7 +42,7 @@
     "fs": "^0.0.1-security",
     "helmet": "^3.22.0",
     "lodash": "^4.17.15",
-    "moment": "^2.25.1",
+    "moment": "^2.29.2",
     "nonce": "^1.0.4",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
